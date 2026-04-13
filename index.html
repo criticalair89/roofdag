@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Roofdag.nl – Hoeveel betaal jij écht aan belasting?</title>
+  <meta name="description" content="Bereken jouw totale belastingdruk: inkomstenbelasting, BTW, accijnzen, OZB en meer – alles in één eerlijk overzicht.">
+  <style>
+    :root {
+      --oranje: #FF5A1F;
+      --oranje-licht: #FF7A44;
+      --rood: #C0392B;
+      --donker: #0F0F1A;
+      --donker-mid: #1A1A2E;
+      --grijs: #F2F2EE;
+      --wit: #FFFFFF;
+      --tekst: #1C1C2E;
+      --tekst-zacht: #777;
+      --rand: #E4E4E4;
+      --groen: #1DB86A;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--grijs);
+      color: var(--tekst);
+      line-height: 1.55;
+    }
+
+    /* ─── HEADER ─── */
+    header {
+      background: var(--donker);
+      padding: 0 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 58px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.4);
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      color: white;
+    }
+    .logo .o { color: var(--oranje); }
+
+    .header-badge {
+      font-size: 11px;
+      font-weight: 700;
+      background: rgba(255,90,31,0.18);
+      color: var(--oranje-licht);
+      border: 1px solid rgba(255,90,31,0.3);
+      border-radius: 20px;
+      padding: 4px 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      background: linear-gradient(160deg, var(--donker) 0%, #1f1435 50%, #0f1a2e 100%);
+      color: white;
+      text-align: center;
+      padding: 64px 24px 56px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 100%, rgba(255,90,31,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--oranje);
+      margin-bottom: 18px;
+      background: rgba(255,90,31,0.12);
+      border: 1px solid rgba(255,90,31,0.25);
+      border-radius: 20px;
+      padding: 5px 16px;
+    }
+
+    .hero h1 {
+      font-size: clamp(32px, 6vw, 60px);
+      font-weight: 900;
+      line-height: 1.08;
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .hero h1 .accent { color: var(--oranje); }
+
+    .hero p {
+      max-width: 520px;
+      margin: 0 auto;
+      font-size: 17px;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.6;
+    }
+
+    /* ─── MAIN GRID ─── */
+    .hoofd {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 32px 16px 80px;
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 20px;
+      align-items: start;
+    }
+
+    @media (max-width: 800px) {
+      .hoofd { grid-template-columns: 1fr; }
+      .resultaten { order: -1; }
+    }
+
+    /* ─── CARDS ─── */
+    .card {
+      background: var(--wit);
+      border-radius: 16px;
+      padding: 22px 24px;
+      margin-bottom: 16px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+
+    .card-titel {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 22px;
+      padding-bottom: 14px;
+      border-bottom: 2px solid var(--rand);
+    }
+
+    .card-titel .ic { font-size: 20px; }
+    .card-titel h2 { font-size: 15px; font-weight: 800; letter-spacing: -0.2px; }
+
+    /* ─── FORM ─── */
+    .veld { margin-bottom: 20px; }
+    .veld:last-child { margin-bottom: 0; }
+
+    .veld label {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      margin-bottom: 9px;
+      color: var(--tekst);
+    }
+
+    .hint { font-weight: 400; color: var(--tekst-zacht); }
+
+    input[type="number"] {
+      width: 100%;
+      padding: 10px 14px;
+      border: 2px solid var(--rand);
+      border-radius: 9px;
+      font-size: 15px;
+      font-family: inherit;
+      outline: none;
+      color: var(--tekst);
+      transition: border-color 0.2s;
+      -moz-appearance: textfield;
+    }
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; }
+    input[type="number"]:focus { border-color: var(--oranje); }
+
+    /* Slider row */
+    .slider-rij {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 10px;
+    }
+
+    input[type="range"] {
+      flex: 1;
+      accent-color: var(--oranje);
+      height: 6px;
+      cursor: pointer;
+    }
+
+    .slider-val {
+      font-size: 19px;
+      font-weight: 900;
+      color: var(--oranje);
+      min-width: 120px;
+      text-align: right;
+      line-height: 1;
+    }
+
+    /* Toggles */
+    .toggles {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .btn-toggle {
+      padding: 8px 14px;
+      border: 2px solid var(--rand);
+      border-radius: 9px;
+      background: var(--wit);
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--tekst);
+      cursor: pointer;
+      transition: all 0.15s;
+      line-height: 1;
+    }
+
+    .btn-toggle.aan {
+      background: var(--oranje);
+      border-color: var(--oranje);
+      color: white;
+    }
+
+    .btn-toggle:hover:not(.aan) { border-color: var(--oranje); }
+
+    /* Conditional block */
+    .condblok {
+      display: none;
+      margin-top: 14px;
+      padding: 16px;
+      background: var(--grijs);
+      border-radius: 10px;
+    }
+    .condblok.toon { display: block; }
+    .condblok .veld:last-child { margin-bottom: 0; }
+
+    .sectie-kopje {
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--tekst-zacht);
+      margin: 22px 0 10px;
+    }
+
+    /* ─── RESULTS COLUMN ─── */
+    .resultaten { position: sticky; top: 74px; }
+
+    /* Totaal box */
+    .totaal-box {
+      background: linear-gradient(145deg, var(--donker-mid), #0f0f28);
+      border-radius: 16px;
+      color: white;
+      padding: 26px 22px 22px;
+      margin-bottom: 16px;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+    }
+
+    .totaal-label {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      opacity: 0.5;
+      margin-bottom: 8px;
+    }
+
+    .totaal-bedrag {
+      font-size: 50px;
+      font-weight: 900;
+      color: var(--oranje);
+      line-height: 1;
+      letter-spacing: -2px;
+      margin-bottom: 4px;
+    }
+
+    .totaal-sub {
+      font-size: 12px;
+      opacity: 0.4;
+    }
+
+    .totaal-pct {
+      margin-top: 16px;
+      font-size: 16px;
+      font-weight: 700;
+      opacity: 0.85;
+    }
+    .totaal-pct .big { font-size: 24px; color: var(--oranje); }
+
+    /* Vrijheidsdag */
+    .vrijheidsdag {
+      margin-top: 16px;
+      padding: 14px 16px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      font-size: 13px;
+      text-align: left;
+    }
+    .vrijheidsdag strong {
+      display: block;
+      font-size: 18px;
+      color: var(--oranje);
+      margin-bottom: 3px;
+      font-weight: 900;
+    }
+    .vrijheidsdag .vd-label {
+      font-size: 11px;
+      opacity: 0.5;
+      margin-bottom: 5px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Gauge */
+    .gauge-wrap { padding: 4px 0 0; }
+
+    .gauge-balk {
+      height: 12px;
+      background: linear-gradient(to right, #1DB86A 0%, #F0A500 50%, #E74C3C 100%);
+      border-radius: 6px;
+      position: relative;
+    }
+
+    .gauge-naald {
+      position: absolute;
+      top: -7px;
+      width: 4px;
+      height: 26px;
+      background: var(--donker);
+      border-radius: 2px;
+      transform: translateX(-50%);
+      transition: left 0.6s cubic-bezier(.34,1.56,.64,1);
+      box-shadow: 0 0 0 2px white;
+    }
+
+    .gauge-labels {
+      display: flex;
+      justify-content: space-between;
+      font-size: 10px;
+      color: var(--tekst-zacht);
+      margin-top: 7px;
+    }
+
+    /* Breakdown list */
+    .breakdown-item {
+      padding: 11px 0;
+      border-bottom: 1px solid var(--rand);
+    }
+    .breakdown-item:last-child { border-bottom: none; }
+
+    .bi-rij {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      font-size: 13px;
+      margin-bottom: 6px;
+    }
+
+    .bi-naam { font-weight: 600; color: var(--tekst); }
+    .bi-bedrag { font-weight: 800; color: var(--oranje); font-size: 14px; }
+
+    .bi-balk-bg {
+      height: 4px;
+      background: var(--rand);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .bi-balk-fill {
+      height: 100%;
+      border-radius: 2px;
+      transition: width 0.5s ease;
+    }
+
+    /* Factoid */
+    .factoid {
+      background: linear-gradient(135deg, #fff7f0, #fff2e8);
+      border: 2px solid #ffd4b5;
+      border-radius: 14px;
+      padding: 16px 18px;
+      font-size: 13.5px;
+      line-height: 1.55;
+      margin-top: 16px;
+    }
+    .factoid .f-titel {
+      font-weight: 800;
+      color: var(--oranje);
+      margin-bottom: 5px;
+      font-size: 14px;
+    }
+
+    /* ─── DISCLAIMER ─── */
+    .disclaimer {
+      font-size: 11px;
+      color: var(--tekst-zacht);
+      line-height: 1.6;
+      margin-top: 12px;
+      padding: 0 2px;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--donker);
+      color: rgba(255,255,255,0.35);
+      text-align: center;
+      padding: 28px 24px;
+      font-size: 12px;
+      line-height: 1.7;
+    }
+    footer .f-logo {
+      font-size: 16px;
+      font-weight: 900;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 6px;
+    }
+    footer .f-logo span { color: var(--oranje); }
+
+    /* ─── UTIL ─── */
+    .mt-8  { margin-top: 8px; }
+    .mt-14 { margin-top: 14px; }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo"><span class="o">Roof</span>dag.nl</div>
+  <div class="header-badge">🇳🇱 Belastingcalculator 2025</div>
+</header>
+
+<div class="hero">
+  <div class="hero-eyebrow">Transparantie over belastingen</div>
+  <h1>Hoeveel betaal jij<br><span class="accent">écht</span> aan belasting?</h1>
+  <p>Van inkomstenbelasting tot BTW, accijnzen en OZB — vul jouw situatie in en zie het complete plaatje.</p>
+</div>
+
+<div class="hoofd">
+
+  <!-- ════════════ INVOER KOLOM ════════════ -->
+  <div class="invoer">
+
+    <!-- INKOMEN -->
+    <div class="card">
+      <div class="card-titel"><span class="ic">💼</span><h2>Inkomen</h2></div>
+
+      <div class="veld">
+        <label>Bruto jaarinkomen <span class="hint">— vóór belastingen</span></label>
+        <div class="slider-rij">
+          <input type="range" id="sl-inkomen" min="0" max="200000" step="500" value="40000"
+                 oninput="slUpdate('inkomen', +this.value)">
+          <div class="slider-val" id="sw-inkomen">€ 40.000</div>
+        </div>
+        <input type="number" id="in-inkomen" value="40000" min="0"
+               oninput="numUpdate('inkomen', +this.value)">
+      </div>
+
+      <div class="veld">
+        <label>Type inkomen</label>
+        <div class="toggles">
+          <button class="btn-toggle aan" data-g="inkomen-type" data-v="werk" onclick="tog(this)">Werk / loon</button>
+          <button class="btn-toggle" data-g="inkomen-type" data-v="uitkering" onclick="tog(this)">Uitkering / pensioen</button>
+          <button class="btn-toggle" data-g="inkomen-type" data-v="zzp" onclick="tog(this)">ZZP / ondernemer</button>
+        </div>
+      </div>
+
+      <div class="veld">
+        <label>Spaargeld + beleggingen <span class="hint">— Box 3</span></label>
+        <input type="number" id="in-vermogen" value="0" min="0" oninput="herbereken()">
+      </div>
+    </div>
+
+    <!-- WONING -->
+    <div class="card">
+      <div class="card-titel"><span class="ic">🏠</span><h2>Woning</h2></div>
+
+      <div class="veld">
+        <label>Woonsituatie</label>
+        <div class="toggles">
+          <button class="btn-toggle aan" data-g="woning-type" data-v="huur"
+                  onclick="tog(this); toon('blok-koop', false)">Huurwoning</button>
+          <button class="btn-toggle" data-g="woning-type" data-v="koop"
+                  onclick="tog(this); toon('blok-koop', true)">Koopwoning</button>
+        </div>
+      </div>
+
+      <div id="blok-koop" class="condblok">
+        <div class="veld">
+          <label>WOZ-waarde</label>
+          <input type="number" id="in-woz" value="350000" min="0" oninput="herbereken()">
+        </div>
+        <div class="veld">
+          <label>Hypotheekschuld</label>
+          <input type="number" id="in-hypotheek" value="280000" min="0" oninput="herbereken()">
+        </div>
+        <div class="veld">
+          <label>Hypotheekrente (%)</label>
+          <input type="number" id="in-rente" value="4.2" min="0" max="20" step="0.1" oninput="herbereken()">
+        </div>
+      </div>
+    </div>
+
+    <!-- MOBILITEIT -->
+    <div class="card">
+      <div class="card-titel"><span class="ic">🚗</span><h2>Mobiliteit</h2></div>
+
+      <div class="veld">
+        <label>Auto</label>
+        <div class="toggles">
+          <button class="btn-toggle aan" data-g="auto-type" data-v="geen"
+                  onclick="tog(this); toon('blok-auto', false)">Geen auto</button>
+          <button class="btn-toggle" data-g="auto-type" data-v="benzine"
+                  onclick="tog(this); toon('blok-auto', true); setV(7,'L/100km')">Benzine</button>
+          <button class="btn-toggle" data-g="auto-type" data-v="diesel"
+                  onclick="tog(this); toon('blok-auto', true); setV(6,'L/100km')">Diesel</button>
+          <button class="btn-toggle" data-g="auto-type" data-v="elektrisch"
+                  onclick="tog(this); toon('blok-auto', true); setV(18,'kWh/100km')">Elektrisch</button>
+        </div>
+      </div>
+
+      <div id="blok-auto" class="condblok">
+        <div class="veld">
+          <label>Jaarkilometrage</label>
+          <div class="slider-rij">
+            <input type="range" id="sl-km" min="0" max="80000" step="1000" value="15000"
+                   oninput="slUpdate('km', +this.value)">
+            <div class="slider-val" id="sw-km">15.000 km</div>
+          </div>
+        </div>
+        <div class="veld">
+          <label id="lbl-verbruik">Verbruik (L/100km)</label>
+          <input type="number" id="in-verbruik" value="7" min="1" max="40" step="0.1" oninput="herbereken()">
+        </div>
+      </div>
+
+      <div class="veld mt-14">
+        <label>Vluchten vanuit Nederland per jaar <span class="hint">— vliegbelasting</span></label>
+        <div class="slider-rij">
+          <input type="range" id="sl-vluchten" min="0" max="20" step="1" value="2"
+                 oninput="slUpdate('vluchten', +this.value)">
+          <div class="slider-val" id="sw-vluchten">2 vluchten</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LEEFGEWOONTEN -->
+    <div class="card">
+      <div class="card-titel"><span class="ic">🍺</span><h2>Leefgewoonten & uitgaven</h2></div>
+
+      <div class="veld">
+        <label>Roken</label>
+        <div class="toggles">
+          <button class="btn-toggle aan" data-g="roken" data-v="nee" onclick="tog(this)">Niet</button>
+          <button class="btn-toggle" data-g="roken" data-v="licht" onclick="tog(this)">≤10/dag</button>
+          <button class="btn-toggle" data-g="roken" data-v="pakje" onclick="tog(this)">1 pakje/dag</button>
+          <button class="btn-toggle" data-g="roken" data-v="zwaar" onclick="tog(this)">30+/dag</button>
+        </div>
+      </div>
+
+      <div class="veld">
+        <label>Alcoholgebruik</label>
+        <div class="toggles">
+          <button class="btn-toggle aan" data-g="alcohol" data-v="geen" onclick="tog(this)">Geen</button>
+          <button class="btn-toggle" data-g="alcohol" data-v="licht" onclick="tog(this)">Licht</button>
+          <button class="btn-toggle" data-g="alcohol" data-v="gemiddeld" onclick="tog(this)">Gemiddeld</button>
+          <button class="btn-toggle" data-g="alcohol" data-v="veel" onclick="tog(this)">Veel</button>
+        </div>
+      </div>
+
+      <div class="sectie-kopje">BTW-schatting</div>
+
+      <div class="veld">
+        <label>Maandelijkse bestedingen <span class="hint">— excl. wonen & auto</span></label>
+        <input type="number" id="in-bestedingen" value="1500" min="0" oninput="herbereken()">
+      </div>
+    </div>
+
+  </div><!-- /invoer -->
+
+  <!-- ════════════ RESULTATEN KOLOM ════════════ -->
+  <div class="resultaten">
+
+    <div class="totaal-box">
+      <div class="totaal-label">Geschat totaal per jaar</div>
+      <div class="totaal-bedrag" id="r-totaal">€ 0</div>
+      <div class="totaal-sub">alle belastingen &amp; heffingen samen</div>
+      <div class="totaal-pct">= <span class="big" id="r-pct">0%</span> van bruto inkomen</div>
+
+      <div class="vrijheidsdag" id="r-vd">
+        <div class="vd-label">Jouw belastingvrijheidsdag</div>
+        <strong id="r-datum">–</strong>
+        <span id="r-vd-tekst">Vul je inkomen in om te berekenen.</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div style="font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:1.2px;color:var(--tekst-zacht);margin-bottom:10px;">Belastingdruk</div>
+      <div class="gauge-balk">
+        <div class="gauge-naald" id="gauge-naald" style="left:0%"></div>
+      </div>
+      <div class="gauge-labels">
+        <span>Laag (0%)</span>
+        <span>Gemiddeld (40%)</span>
+        <span>Hoog (70%+)</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-titel"><span class="ic">📊</span><h2>Uitsplitsing</h2></div>
+      <div id="r-breakdown">
+        <div style="font-size:13px;color:var(--tekst-zacht);">Vul jouw gegevens in...</div>
+      </div>
+    </div>
+
+    <div class="factoid">
+      <div class="f-titel">💡 Wist je dat...</div>
+      <div id="r-factoid">Bereken jouw belastingdruk om meer te weten te komen.</div>
+    </div>
+
+    <div class="disclaimer">
+      ⚠️ Alle berekeningen zijn indicatief op basis van Nederlandse tarieven 2025. Exacte bedragen hangen af van jouw persoonlijke situatie. Dit is geen fiscaal advies — raadpleeg de <a href="https://belastingdienst.nl" target="_blank" style="color:var(--oranje);">Belastingdienst</a> voor exacte informatie.
+    </div>
+
+  </div><!-- /resultaten -->
+
+</div><!-- /hoofd -->
+
+<footer>
+  <div class="f-logo"><span>Roof</span>dag.nl</div>
+  <div>Belastingcalculator voor Nederland · Op basis van tarieven 2025</div>
+  <div>Indicatief · Geen juridisch of fiscaal advies</div>
+</footer>
+
+<script>
+// ════════════════════════════════════════
+// STATE
+// ════════════════════════════════════════
+const S = {
+  inkomen:      40000,
+  inkomstenType:'werk',
+  vermogen:     0,
+  woningType:   'huur',
+  woz:          350000,
+  hypotheek:    280000,
+  rente:        4.2,
+  autoType:     'geen',
+  km:           15000,
+  verbruik:     7,
+  vluchten:     2,
+  roken:        'nee',
+  alcohol:      'geen',
+  bestedingen:  1500,
+};
+
+// ════════════════════════════════════════
+// HELPERS
+// ════════════════════════════════════════
+function eu(n) {
+  return '€\u202f' + Math.round(n).toLocaleString('nl-NL');
+}
+function nl(n) { return Math.round(n).toLocaleString('nl-NL'); }
+function g(id) { return document.getElementById(id); }
+function gv(id) { return parseFloat(g(id)?.value) || 0; }
+function aktief(groep) {
+  return document.querySelector(`[data-g="${groep}"].aan`)?.dataset.v || '';
+}
+
+// ════════════════════════════════════════
+// UI EVENTS
+// ════════════════════════════════════════
+function slUpdate(key, val) {
+  if (key === 'inkomen') {
+    S.inkomen = val;
+    g('sw-inkomen').textContent = '€ ' + nl(val);
+    g('in-inkomen').value = val;
+  } else if (key === 'km') {
+    S.km = val;
+    g('sw-km').textContent = nl(val) + ' km';
+  } else if (key === 'vluchten') {
+    S.vluchten = val;
+    g('sw-vluchten').textContent = val + (val === 1 ? ' vlucht' : ' vluchten');
+  }
+  herbereken();
+}
+
+function numUpdate(key, val) {
+  if (key === 'inkomen') {
+    S.inkomen = val;
+    g('sl-inkomen').value = Math.min(val, 200000);
+    g('sw-inkomen').textContent = '€ ' + nl(val);
+  }
+  herbereken();
+}
+
+function tog(btn) {
+  const groep = btn.dataset.g;
+  document.querySelectorAll(`[data-g="${groep}"]`).forEach(b => b.classList.remove('aan'));
+  btn.classList.add('aan');
+  herbereken();
+}
+
+function toon(id, ja) {
+  g(id).classList.toggle('toon', ja);
+}
+
+function setV(waarde, eenheid) {
+  g('in-verbruik').value = waarde;
+  g('lbl-verbruik').textContent = 'Verbruik (' + eenheid + ')';
+  herbereken();
+}
+
+// ════════════════════════════════════════
+// TAX CALCULATIONS
+// ════════════════════════════════════════
+
+function leesDom() {
+  S.inkomen      = gv('in-inkomen');
+  S.vermogen     = gv('in-vermogen');
+  S.km           = gv('sl-km') || 15000;
+  S.vluchten     = gv('sl-vluchten');
+  S.bestedingen  = gv('in-bestedingen');
+  S.woz          = gv('in-woz');
+  S.hypotheek    = gv('in-hypotheek');
+  S.rente        = gv('in-rente');
+  S.verbruik     = gv('in-verbruik') || 7;
+  S.inkomstenType= aktief('inkomen-type') || 'werk';
+  S.woningType   = aktief('woning-type') || 'huur';
+  S.autoType     = aktief('auto-type')   || 'geen';
+  S.roken        = aktief('roken')       || 'nee';
+  S.alcohol      = aktief('alcohol')     || 'geen';
+}
+
+// ── Box 1: Inkomstenbelasting ──────────
+function calcBox1() {
+  const bruto = S.inkomen;
+  let belastbaarInkomen = bruto;
+
+  // ZZP MKB-winstvrijstelling 12,7% (2025)
+  if (S.inkomstenType === 'zzp') {
+    belastbaarInkomen *= (1 - 0.127);
+  }
+
+  // Eigenwoningforfait & hypotheekrenteaftrek
+  if (S.woningType === 'koop') {
+    const woz = S.woz;
+    let ewf = 0;
+    if (woz <= 1200000) {
+      ewf = woz * 0.0035;
+    } else {
+      ewf = 1200000 * 0.0035 + (woz - 1200000) * 0.02;
+    }
+    const jaarRente = S.hypotheek * (S.rente / 100);
+    // Aftrekpost hypotheekrente (max 36,97% tarief 2025)
+    belastbaarInkomen += ewf;
+    belastbaarInkomen -= jaarRente;
+    belastbaarInkomen = Math.max(0, belastbaarInkomen);
+  }
+
+  // Schijven 2025
+  const GRENS1  = 75518;
+  const TARIEF1 = 0.3697;
+  const TARIEF2 = 0.4950;
+  let bel = belastbaarInkomen <= GRENS1
+    ? belastbaarInkomen * TARIEF1
+    : GRENS1 * TARIEF1 + (belastbaarInkomen - GRENS1) * TARIEF2;
+
+  // Algemene heffingskorting 2025 (max €3.362)
+  let ahk = 0;
+  const ink = belastbaarInkomen;
+  if (ink <= 24812) {
+    ahk = 3362;
+  } else if (ink <= 75518) {
+    ahk = 3362 * (1 - (ink - 24812) / (75518 - 24812));
+  }
+
+  // Arbeidskorting 2025 (max €5.158, alleen werk/zzp)
+  let ak = 0;
+  if (S.inkomstenType === 'werk' || S.inkomstenType === 'zzp') {
+    const I = bruto; // arbeidskorting berekend op arbeidsinkomen
+    if      (I <= 10741)  ak = I * 0.08425;
+    else if (I <= 23201)  ak = 905  + (I - 10741) * 0.29861;
+    else if (I <= 37691)  ak = 4631 + (I - 23201) * 0.03085;
+    else if (I <= 124931) ak = 5079 - (I - 37691) * 0.0651;
+    ak = Math.max(0, Math.min(ak, 5158));
+  }
+
+  return Math.max(0, bel - ahk - ak);
+}
+
+// ── Box 3: Vermogensrendementsheffing ──
+function calcBox3() {
+  const verm = S.vermogen;
+  if (verm <= 0) return 0;
+  const vrij = 57000; // vrijstelling 2025 (alleenstaand)
+  const belastbaar = Math.max(0, verm - vrij);
+  if (!belastbaar) return 0;
+  // Forfaitair rendement ~5% (mix spaar/beleggen), tarief 36%
+  return belastbaar * 0.05 * 0.36;
+}
+
+// ── BTW ───────────────────────────────
+function calcBTW() {
+  const jaar = S.bestedingen * 12;
+  // 60% hoog tarief 21%, 40% laag tarief 9%
+  return jaar * 0.60 * (0.21 / 1.21)
+       + jaar * 0.40 * (0.09 / 1.09);
+}
+
+// ── Accijnzen ─────────────────────────
+function calcAccijns() {
+  let tot = 0;
+
+  // Brandstof
+  if (S.autoType === 'benzine') {
+    const liter = S.km * S.verbruik / 100;
+    tot += liter * 0.814; // benzineaccijns 2025 €/L
+  } else if (S.autoType === 'diesel') {
+    const liter = S.km * S.verbruik / 100;
+    tot += liter * 0.516; // dieselaccijns 2025 €/L
+  }
+  // Elektrisch: geen brandstofaccijns
+
+  // Tabak
+  if (S.roken === 'licht')  tot += (7  / 20) * 365 * 4.90;
+  if (S.roken === 'pakje')  tot += (20 / 20) * 365 * 4.90;
+  if (S.roken === 'zwaar')  tot += (30 / 20) * 365 * 4.90;
+
+  // Alcohol (geschatte accijns per categorie)
+  if (S.alcohol === 'licht')    tot += 140;
+  if (S.alcohol === 'gemiddeld') tot += 360;
+  if (S.alcohol === 'veel')     tot += 820;
+
+  return tot;
+}
+
+// ── Motorrijtuigenbelasting ───────────
+function calcMRB() {
+  // Vrijstelling elektrisch t/m eind 2025
+  if (S.autoType === 'geen' || S.autoType === 'elektrisch') return 0;
+  if (S.autoType === 'benzine') return 890;   // gem. ~1300kg benzine
+  if (S.autoType === 'diesel')  return 1245;  // diesel hogere MRB
+  return 0;
+}
+
+// ── Vliegbelasting ───────────────────
+function calcVlieg() {
+  return S.vluchten * 29.05; // €29,05 per vertrek 2025
+}
+
+// ── OZB ──────────────────────────────
+function calcOZB() {
+  if (S.woningType !== 'koop') return 0;
+  return S.woz * 0.001; // gem. 0,10% eigenaar OZB
+}
+
+// ════════════════════════════════════════
+// RENDER
+// ════════════════════════════════════════
+const KLEUREN = ['#e74c3c','#e67e22','#f39c12','#27ae60','#2980b9','#8e44ad','#16a085','#d35400'];
+
+function datumVanDag(dagNr) {
+  const d = new Date(2025, 0, Math.round(dagNr));
+  return d.toLocaleDateString('nl-NL', { day: 'numeric', month: 'long' });
+}
+
+function herbereken() {
+  leesDom();
+
+  const componenten = [
+    { naam: 'Inkomstenbelasting (Box 1)',       bedrag: calcBox1()  },
+    { naam: 'BTW op bestedingen',               bedrag: calcBTW()   },
+    { naam: 'Accijnzen (brandstof/tabak/alcohol)', bedrag: calcAccijns() },
+    { naam: 'Motorrijtuigenbelasting',           bedrag: calcMRB()   },
+    { naam: 'Vliegbelasting',                   bedrag: calcVlieg() },
+    { naam: 'OZB (onroerendezaakbelasting)',     bedrag: calcOZB()   },
+    { naam: 'Vermogensrendementsheffing (Box 3)',bedrag: calcBox3()  },
+  ].filter(c => c.bedrag > 0.5);
+
+  const totaal = componenten.reduce((s, c) => s + c.bedrag, 0);
+  const pct    = S.inkomen > 0 ? totaal / S.inkomen * 100 : 0;
+
+  // Totaal & percentage
+  g('r-totaal').textContent = eu(totaal);
+  g('r-pct').textContent    = Math.round(pct) + '%';
+
+  // Belastingvrijheidsdag
+  const dagNr = Math.round(pct / 100 * 365);
+  if (S.inkomen > 0 && totaal > 0) {
+    g('r-datum').textContent   = datumVanDag(dagNr);
+    g('r-vd-tekst').textContent = 'Tot die dag werk je voor de overheid.';
+  } else {
+    g('r-datum').textContent   = '–';
+    g('r-vd-tekst').textContent = 'Vul je inkomen in om te berekenen.';
+  }
+
+  // Gauge
+  const gaugePct = Math.min(pct / 70 * 100, 100);
+  g('gauge-naald').style.left = gaugePct.toFixed(1) + '%';
+
+  // Breakdown
+  const maxBedrag = Math.max(...componenten.map(c => c.bedrag), 1);
+  const bd = g('r-breakdown');
+
+  if (componenten.length === 0) {
+    bd.innerHTML = '<div style="font-size:13px;color:var(--tekst-zacht);">Vul jouw gegevens in...</div>';
+  } else {
+    bd.innerHTML = componenten.map((c, i) => `
+      <div class="breakdown-item">
+        <div class="bi-rij">
+          <span class="bi-naam">${c.naam}</span>
+          <span class="bi-bedrag">${eu(c.bedrag)}</span>
+        </div>
+        <div class="bi-balk-bg">
+          <div class="bi-balk-fill" style="width:${(c.bedrag/maxBedrag*100).toFixed(1)}%;background:${KLEUREN[i%KLEUREN.length]}"></div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  // Factoid
+  if (S.inkomen > 0 && totaal > 0) {
+    const perMaand = eu(totaal / 12);
+    const perDag   = eu(totaal / 365);
+    g('r-factoid').textContent =
+      `Je betaalt gemiddeld ${perMaand} per maand aan belastingen, oftewel ${perDag} per dag.`;
+  } else {
+    g('r-factoid').textContent = 'Bereken jouw belastingdruk om meer te weten te komen.';
+  }
+}
+
+// ── Init ─────────────────────────────
+herbereken();
+</script>
+</body>
+</html>
