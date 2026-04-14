@@ -672,7 +672,7 @@
     <div class="totaal-box">
       <div class="totaal-label">Belastingen &amp; heffingen (bruto)</div>
       <div class="totaal-bedrag" id="r-totaal">€ 0</div>
-      <div class="totaal-sub">alle belastingen samen (excl. eenmalig)</div>
+      <div class="totaal-sub">alle belastingen samen dit jaar</div>
       <div class="totaal-pct">= <span class="big" id="r-pct">0%</span> van economisch inkomen</div>
 
       <div class="roofdag-blok">
@@ -718,7 +718,7 @@
     </div>
 
     <div class="disclaimer">
-      ⚠️ Alle berekeningen zijn indicatief op basis van Nederlandse tarieven 2025. Exacte bedragen hangen af van jouw persoonlijke situatie. Overdrachtsbelasting is <em>eenmalig</em> en telt niet mee bij de Roofdag-berekening. Dit is geen fiscaal advies — raadpleeg de <a href="https://belastingdienst.nl" target="_blank" style="color:var(--blauw);">Belastingdienst</a> voor exacte informatie.
+      ⚠️ Alle berekeningen zijn indicatief op basis van Nederlandse tarieven 2025. Exacte bedragen hangen af van jouw persoonlijke situatie. Dit is geen fiscaal advies — raadpleeg de <a href="https://belastingdienst.nl" target="_blank" style="color:var(--blauw);">Belastingdienst</a> voor exacte informatie.
     </div>
 
   </div><!-- /resultaten -->
@@ -942,7 +942,7 @@ function calcEnergie() {
   return eb_elek + eb_gas;
 }
 
-// ── Overdrachtsbelasting (eenmalig) ──
+// ── Overdrachtsbelasting ──
 function calcOverdrachts() {
   if (!S.aankoopJa) return 0;
   if (S.aankoopType==='starter' && S.aankoopPrijs<=510000) return 0;
@@ -1072,8 +1072,6 @@ function datumVanDag(dagNr) {
 function herbereken() {
   leesDom();
 
-  const overdrachts = calcOverdrachts(); // eenmalig — telt NIET mee in jaarlijkse druk
-
   const componenten = [
     { naam: 'Inkomstenbelasting (Box 1)',          bedrag: calcBox1(),     tag: '' },
     { naam: 'BTW op bestedingen',                  bedrag: calcBTW(),      tag: '' },
@@ -1084,18 +1082,13 @@ function herbereken() {
     { naam: 'ZVW bijdrage (ZZP)',                  bedrag: calcZVW(),      tag: '' },
     { naam: 'Motorrijtuigenbelasting',             bedrag: calcMRB(),      tag: '' },
     { naam: 'Vliegbelasting',                      bedrag: calcVlieg(),    tag: '' },
-    { naam: 'OZB (onroerendezaakbelasting)',        bedrag: calcOZB(),      tag: '' },
-    { naam: 'Gemeentelijke heffingen',             bedrag: calcGemeente(), tag: '' },
+    { naam: 'OZB (onroerendezaakbelasting)',        bedrag: calcOZB(),          tag: '' },
+    { naam: 'Gemeentelijke heffingen',             bedrag: calcGemeente(),     tag: '' },
+    { naam: 'Overdrachtsbelasting',                bedrag: calcOverdrachts(),  tag: '' },
   ].filter(c => c.bedrag > 0.5);
 
-  // Overdrachtsbelasting apart tonen (eenmalig)
-  if (overdrachts > 0.5) {
-    componenten.push({ naam: 'Overdrachtsbelasting', bedrag: overdrachts, tag: 'eenmalig' });
-  }
-
-  // Totaal EXCLUSIEF overdrachtsbelasting voor Roofdag
-  const totaalJaarlijks = componenten.filter(c=>c.tag!=='eenmalig').reduce((s,c)=>s+c.bedrag, 0);
-  const totaalInclEenmalig = componenten.reduce((s,c)=>s+c.bedrag, 0);
+  const totaalJaarlijks    = componenten.reduce((s,c)=>s+c.bedrag, 0);
+  const totaalInclEenmalig = totaalJaarlijks;
 
   // Toeslagen
   const toeslagenItems = calcToeslagen();
