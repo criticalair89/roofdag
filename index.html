@@ -347,7 +347,7 @@
       <div id="blok-koop" class="condblok">
         <div class="col2">
           <div class="veld">
-            <label>WOZ-waarde</label>
+            <label>WOZ-waarde <span class="hint">— boven €1.310.000: villatax 2,35%</span></label>
             <input type="number" id="in-woz" value="400000" min="0" oninput="herbereken()">
           </div>
           <div class="veld">
@@ -960,7 +960,11 @@ function calcBox1() {
   if (S.inkomstenType === 'zzp') bi *= (1 - 0.127); // MKB-winstvrijstelling
 
   if (S.woningType === 'koop') {
-    let ewf = S.woz <= 1200000 ? S.woz * 0.0035 : 1200000*0.0035 + (S.woz-1200000)*0.02;
+    // Eigenwoningforfait 2025: 0,35% t/m €1.310.000, daarboven 2,35% (villatax)
+    const EWF_GRENS = 1310000, EWF_LAAG = 0.0035, EWF_HOOG = 0.0235;
+    let ewf = S.woz <= EWF_GRENS
+      ? S.woz * EWF_LAAG
+      : EWF_GRENS * EWF_LAAG + (S.woz - EWF_GRENS) * EWF_HOOG;
     bi = Math.max(0, bi + ewf - S.hypotheek * (S.rente/100));
   }
 
