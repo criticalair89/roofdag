@@ -18,6 +18,9 @@
       --grijs-mid:    #696969;
       --tekst:        #000000;
       --wit:          #ffffff;
+      --groen:        #1a7a3c;
+      --groen-licht:  #b7e4c7;
+      --groen-zacht:  #eafaf1;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -200,6 +203,26 @@
     footer a { color: var(--blauw-licht); }
     .mt-8 { margin-top: 8px; } .mt-12 { margin-top: 12px; }
 
+    /* Toeslagen */
+    .toeslag-blok {
+      background: var(--groen-zacht); border: 1px solid var(--groen-licht);
+      border-left: 4px solid var(--groen); border-radius: 3px;
+      padding: 14px 16px; margin-top: 12px;
+    }
+    .toeslag-blok .t-label { font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 1px; color: var(--groen); margin-bottom: 6px; }
+    .toeslag-blok .t-bedrag { font-size: 26px; font-weight: 700; color: var(--groen); line-height: 1; }
+    .toeslag-blok .t-sub { font-size: 12px; color: var(--groen); opacity: .75; margin-top: 3px; }
+    .netto-rij { display: flex; justify-content: space-between; align-items: baseline;
+      font-size: 13px; padding: 6px 0; border-bottom: 1px solid var(--grijs); }
+    .netto-rij:last-child { border-bottom: none; }
+    .netto-rij.positief .nv { color: var(--groen); font-weight: 700; }
+    .netto-rij.negatief .nv { color: var(--blauw); font-weight: 700; }
+    .netto-totaal { margin-top: 10px; padding: 10px 12px; background: var(--groen);
+      border-radius: 3px; color: white; display: flex; justify-content: space-between; align-items: center; }
+    .netto-totaal .nt-label { font-size: 12px; font-weight: 600; }
+    .netto-totaal .nt-bedrag { font-size: 20px; font-weight: 700; }
+
     /* Twee kolommen binnen een card op grote schermen */
     .col2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0 16px; }
     @media (max-width: 500px) { .col2 { grid-template-columns: 1fr; } }
@@ -296,9 +319,9 @@
         <label>Woonsituatie</label>
         <div class="toggles">
           <button class="btn-toggle aan" data-g="woning-type" data-v="huur"
-                  onclick="tog(this); toon('blok-koop',false)">Huurwoning</button>
+                  onclick="tog(this); toon('blok-koop',false); toon('blok-huurtoeslag',true); g('blok-geen-huurtoeslag').style.display='none'">Huurwoning</button>
           <button class="btn-toggle" data-g="woning-type" data-v="koop"
-                  onclick="tog(this); toon('blok-koop',true)">Koopwoning</button>
+                  onclick="tog(this); toon('blok-koop',true); toon('blok-huurtoeslag',false); g('blok-geen-huurtoeslag').style.display='block'">Koopwoning</button>
         </div>
       </div>
 
@@ -549,21 +572,107 @@
       </div>
     </div>
 
+    <!-- TOESLAGEN -->
+    <div class="card">
+      <div class="card-titel"><span class="ic">💚</span><h2>Toeslagen &amp; tegemoetkomingen</h2></div>
+      <p style="font-size:13px;color:var(--grijs-mid);margin-bottom:16px;">
+        Toeslagen verminderen je netto afdracht aan de overheid en verschuiven je Roofdag naar later in het jaar.
+      </p>
+
+      <div class="sectie-kopje" style="margin-top:0;border-top:none;padding-top:0;">Zorgtoeslag</div>
+      <div class="veld">
+        <label>Huishoudensituatie <span class="hint">— voor zorgtoeslag</span></label>
+        <div class="toggles">
+          <button class="btn-toggle aan" data-g="zorg-partner" data-v="alleen" onclick="tog(this)">Alleenstaand</button>
+          <button class="btn-toggle" data-g="zorg-partner" data-v="partner" onclick="tog(this)">Met toeslagpartner</button>
+        </div>
+      </div>
+
+      <div class="sectie-kopje">Huurtoeslag</div>
+      <div id="blok-huurtoeslag" class="condblok toon">
+        <div class="veld" style="margin-bottom:0;">
+          <label>Maandelijkse kale huurprijs <span class="hint">— tussen € 454 en € 880 voor toeslag</span></label>
+          <input type="number" id="in-huur" value="850" min="0" oninput="herbereken()">
+        </div>
+      </div>
+      <div id="blok-geen-huurtoeslag" style="display:block;font-size:12px;color:var(--grijs-mid);padding:6px 10px;background:var(--grijs);border-radius:3px;">
+        Huurtoeslag is alleen van toepassing bij een huurwoning. Selecteer 'Huurwoning' in de woningkaart.
+      </div>
+
+      <div class="sectie-kopje">Kinderen</div>
+      <div class="col2">
+        <div class="veld">
+          <label>Kinderen 0–5 jaar <span class="hint">— € 280/kwartaal/kind</span></label>
+          <input type="number" id="in-kind05" value="0" min="0" max="10" oninput="herbereken()">
+        </div>
+        <div class="veld">
+          <label>Kinderen 6–11 jaar <span class="hint">— € 340/kwartaal/kind</span></label>
+          <input type="number" id="in-kind611" value="0" min="0" max="10" oninput="herbereken()">
+        </div>
+        <div class="veld">
+          <label>Kinderen 12–17 jaar <span class="hint">— € 400/kwartaal/kind</span></label>
+          <input type="number" id="in-kind1217" value="0" min="0" max="10" oninput="herbereken()">
+        </div>
+      </div>
+      <div style="font-size:12px;color:var(--grijs-mid);padding:6px 10px;background:var(--blauw-zacht);border-radius:3px;margin-bottom:14px;">
+        💡 Kinderbijslag is een flat bedrag ongeacht inkomen. Kindgebonden budget wordt wel afgebouwd boven ~€ 25.000 inkomen.
+      </div>
+
+      <div class="sectie-kopje">Kinderopvangtoeslag</div>
+      <div class="veld">
+        <div class="toggles">
+          <button class="btn-toggle aan" data-g="opvang" data-v="nee"
+                  onclick="tog(this); toon('blok-opvang',false)">Geen kinderopvang</button>
+          <button class="btn-toggle" data-g="opvang" data-v="ja"
+                  onclick="tog(this); toon('blok-opvang',true)">Ja, gebruik opvang</button>
+        </div>
+      </div>
+      <div id="blok-opvang" class="condblok">
+        <div class="col2">
+          <div class="veld">
+            <label>Maandelijkse opvangkosten <span class="hint">— bruto factuur</span></label>
+            <input type="number" id="in-opvangkosten" value="1200" min="0" oninput="herbereken()">
+          </div>
+          <div class="veld">
+            <label>Type opvang</label>
+            <div class="toggles">
+              <button class="btn-toggle aan" data-g="opvang-type" data-v="dagopvang" onclick="tog(this)">Dagopvang</button>
+              <button class="btn-toggle" data-g="opvang-type" data-v="bso" onclick="tog(this)">BSO</button>
+              <button class="btn-toggle" data-g="opvang-type" data-v="gastouder" onclick="tog(this)">Gastouder</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div><!-- /invoer -->
 
   <!-- ══════════ RESULTATEN ══════════ -->
   <div class="resultaten">
 
     <div class="totaal-box">
-      <div class="totaal-label">Geschat totaal per jaar</div>
+      <div class="totaal-label">Belastingen &amp; heffingen (bruto)</div>
       <div class="totaal-bedrag" id="r-totaal">€ 0</div>
-      <div class="totaal-sub">alle belastingen &amp; heffingen samen</div>
+      <div class="totaal-sub">alle belastingen samen (excl. eenmalig)</div>
       <div class="totaal-pct">= <span class="big" id="r-pct">0%</span> van bruto inkomen</div>
 
       <div class="roofdag-blok">
         <div class="vd-label">Jouw Roofdag</div>
         <strong id="r-datum">–</strong>
         <div class="vd-tekst" id="r-vd-tekst">Vul je inkomen in om te berekenen.</div>
+      </div>
+    </div>
+
+    <div class="toeslag-blok" id="blok-toeslagen-resultaat" style="display:none;">
+      <div class="t-label">Toeslagen ontvangen</div>
+      <div class="t-bedrag" id="r-toeslagen-totaal">€ 0</div>
+      <div class="t-sub" id="r-toeslagen-sub">per jaar terug van de overheid</div>
+      <div id="r-toeslagen-items" style="margin-top:10px;font-size:12px;"></div>
+      <div style="margin-top:10px;">
+        <div class="netto-totaal">
+          <span class="nt-label">Netto afdracht aan overheid</span>
+          <span class="nt-bedrag" id="r-netto">€ 0</span>
+        </div>
       </div>
     </div>
 
@@ -609,6 +718,11 @@ const S = {
   eetbaar: 350, nietEetbaar: 80, kleding: 75, horeca: 100, diversen: 75, abonnementen: 100,
   roken: 'nee', alcohol: 'geen',
   afval: 320, riool: 220, waterschap: 130, parkeer: 0,
+  // Toeslagen
+  zorgPartner: 'alleen',
+  huurMaand: 850,
+  kind05: 0, kind611: 0, kind1217: 0,
+  opvang: 'nee', opvangKosten: 1200, opvangType: 'dagopvang',
 };
 
 function eu(n)  { return '€\u202f' + Math.round(n).toLocaleString('nl-NL'); }
@@ -679,6 +793,15 @@ function leesDom() {
   S.alcohol        = aktief('alcohol')        || 'geen';
   S.energieWoning  = aktief('energie-woning') || 'rijtjeswoning';
   S.energieLabel   = aktief('energie-label')  || 'C';
+  // Toeslagen
+  S.zorgPartner    = aktief('zorg-partner')   || 'alleen';
+  S.huurMaand      = gv('in-huur');
+  S.kind05         = gv('in-kind05');
+  S.kind611        = gv('in-kind611');
+  S.kind1217       = gv('in-kind1217');
+  S.opvang         = aktief('opvang')         || 'nee';
+  S.opvangKosten   = gv('in-opvangkosten');
+  S.opvangType     = aktief('opvang-type')    || 'dagopvang';
 }
 
 // ── Box 1: Inkomstenbelasting + premies volksverz. ──
@@ -791,6 +914,88 @@ function calcOverdrachts() {
   return S.aankoopPrijs * 0.02;
 }
 
+// ══════ TOESLAGEN ══════
+
+// ── Zorgtoeslag 2025 ──
+function calcZorgtoeslag() {
+  const ik = S.inkomen;
+  if (S.zorgPartner === 'partner') {
+    const max = 2928;
+    if (ik <= 34000) return max;
+    if (ik >= 49000) return 0;
+    return max * (1 - (ik - 34000) / (49000 - 34000));
+  } else {
+    const max = 1536;
+    if (ik <= 26480) return max;
+    if (ik >= 38520) return 0;
+    return max * (1 - (ik - 26480) / (38520 - 26480));
+  }
+}
+
+// ── Huurtoeslag 2025 ──
+function calcHuurtoeslag() {
+  if (S.woningType !== 'huur') return 0;
+  const huur = S.huurMaand;
+  if (huur < 454 || huur > 880) return 0;
+  const ik = S.inkomen;
+  if (ik > 33000) return 0; // inkomengrens alleenstaand 2025 (indicatief)
+  // Eigen bijdrage neemt toe met inkomen (~€230 bij laag, ~€580 bij grens)
+  const eigenBijdrage = 230 + Math.max(0, (ik - 15000) / (33000 - 15000)) * 350;
+  const toeslag = Math.max(0, (huur - eigenBijdrage) * 12);
+  // Lineair afbouwen naar inkomengrens
+  const taper = ik <= 22000 ? 1 : Math.max(0, 1 - (ik - 22000) / (33000 - 22000));
+  return toeslag * taper;
+}
+
+// ── Kinderbijslag 2025 (flat, geen inkomenstoets) ──
+function calcKinderbijslag() {
+  return S.kind05   * 4 * 280
+       + S.kind611  * 4 * 340
+       + S.kind1217 * 4 * 400;
+}
+
+// ── Kindgebonden budget 2025 (inkomenafhankelijk) ──
+function calcKindgebondenBudget() {
+  const totKinderen = S.kind05 + S.kind611 + S.kind1217;
+  if (totKinderen === 0) return 0;
+  const ik = S.inkomen;
+  // Max ~€1.500 per kind, afgebouwd boven €25.000 t/m €45.000
+  const max = totKinderen * 1500;
+  if (ik <= 25000) return max;
+  if (ik >= 45000) return 0;
+  return max * (1 - (ik - 25000) / (45000 - 25000));
+}
+
+// ── Kinderopvangtoeslag 2025 ──
+function calcOpvangtoeslag() {
+  if (S.opvang !== 'ja') return 0;
+  const kosten = S.opvangKosten * 12;
+  const ik = S.inkomen;
+  // Vergoedingspercentage (2025 tabel, vereenvoudigd)
+  let pct;
+  if      (ik <=  20350) pct = 0.960;
+  else if (ik <=  30000) pct = 0.960 - (ik -  20350) / ( 30000 -  20350) * 0.140;
+  else if (ik <=  50000) pct = 0.820 - (ik -  30000) / ( 50000 -  30000) * 0.250;
+  else if (ik <=  75000) pct = 0.570 - (ik -  50000) / ( 75000 -  50000) * 0.300;
+  else if (ik <= 100000) pct = 0.270 - (ik -  75000) / (100000 -  75000) * 0.220;
+  else if (ik <= 130000) pct = 0.050 - (ik - 100000) / (130000 - 100000) * 0.030;
+  else pct = 0.020;
+  if (S.opvangType === 'bso')       pct *= 0.87; // BSO iets lager max uurprijs
+  if (S.opvangType === 'gastouder') pct *= 0.78;
+  return kosten * Math.max(0, pct);
+}
+
+// ── Totaal toeslagen ──
+function calcToeslagen() {
+  return [
+    { naam: 'Zorgtoeslag',             bedrag: calcZorgtoeslag() },
+    { naam: 'Huurtoeslag',             bedrag: calcHuurtoeslag() },
+    { naam: 'Kinderbijslag',           bedrag: calcKinderbijslag() },
+    { naam: 'Kindgebonden budget',     bedrag: calcKindgebondenBudget() },
+    { naam: 'Kinderopvangtoeslag',     bedrag: calcOpvangtoeslag() },
+  ].filter(t => t.bedrag > 0.5);
+}
+
 // ── Energieverbruik defaults per woningtype + label ──
 // [kWh/jaar, m³ gas/jaar] — gebaseerd op RVO/CBS gemiddelden 2024
 // A++ en A+ zijn doorgaans volledig elektrisch (warmtepomp), gas ≈ 0
@@ -854,23 +1059,45 @@ function herbereken() {
   // Totaal EXCLUSIEF overdrachtsbelasting voor Roofdag
   const totaalJaarlijks = componenten.filter(c=>c.tag!=='eenmalig').reduce((s,c)=>s+c.bedrag, 0);
   const totaalInclEenmalig = componenten.reduce((s,c)=>s+c.bedrag, 0);
-  const pct = S.inkomen > 0 ? totaalJaarlijks / S.inkomen * 100 : 0;
+
+  // Toeslagen
+  const toeslagenItems = calcToeslagen();
+  const totaalToeslagen = toeslagenItems.reduce((s,t)=>s+t.bedrag, 0);
+  const nettoBelasting  = Math.max(0, totaalJaarlijks - totaalToeslagen);
+  const pct    = S.inkomen > 0 ? totaalJaarlijks / S.inkomen * 100 : 0;
+  const pctNet = S.inkomen > 0 ? nettoBelasting   / S.inkomen * 100 : 0;
 
   g('r-totaal').textContent = eu(totaalInclEenmalig);
   g('r-pct').textContent    = Math.round(pct) + '%';
 
-  // Roofdag: de dag VANAF wanneer je voor de overheid werkt
-  const dagNr = Math.round((1 - pct/100) * 365);
+  // Toeslagen-blok tonen/verbergen
+  const tbEl = g('blok-toeslagen-resultaat');
+  if (totaalToeslagen > 0.5) {
+    tbEl.style.display = 'block';
+    g('r-toeslagen-totaal').textContent = eu(totaalToeslagen);
+    g('r-toeslagen-sub').textContent    = 'per jaar terug van de overheid';
+    g('r-toeslagen-items').innerHTML = toeslagenItems.map(t =>
+      `<div class="netto-rij positief"><span>${t.naam}</span><span class="nv">+ ${eu(t.bedrag)}</span></div>`
+    ).join('');
+    g('r-netto').textContent = eu(nettoBelasting);
+  } else {
+    tbEl.style.display = 'none';
+  }
+
+  // Roofdag op basis van NETTO belastingdruk
+  const dagNr = Math.round((1 - pctNet/100) * 365);
   if (S.inkomen > 0 && totaalJaarlijks > 0) {
-    g('r-datum').textContent    = datumVanDag(dagNr);
-    g('r-vd-tekst').textContent = 'Vanaf die dag werk je uitsluitend voor de overheid.';
+    g('r-datum').textContent = datumVanDag(dagNr);
+    g('r-vd-tekst').textContent = totaalToeslagen > 0.5
+      ? `Na aftrek van toeslagen (${Math.round(pctNet)}% netto druk).`
+      : 'Vanaf die dag werk je uitsluitend voor de overheid.';
   } else {
     g('r-datum').textContent    = '–';
     g('r-vd-tekst').textContent = 'Vul je inkomen in om te berekenen.';
   }
 
-  // Gauge
-  g('gauge-naald').style.left = Math.min(pct/70*100, 100).toFixed(1) + '%';
+  // Gauge op netto druk
+  g('gauge-naald').style.left = Math.min(pctNet/70*100, 100).toFixed(1) + '%';
 
   // Breakdown
   const maxB = Math.max(...componenten.map(c=>c.bedrag), 1);
@@ -892,14 +1119,26 @@ function herbereken() {
 
   // Factoid
   if (S.inkomen > 0 && totaalJaarlijks > 0) {
-    const vrij = Math.round((1 - pct/100) * 12);
-    g('r-factoid').textContent =
-      `Je betaalt ${eu(totaalJaarlijks/12)} per maand aan belastingen — ${eu(totaalJaarlijks/365)} per dag. `
-      + `De eerste ${vrij} maanden van het jaar werk je voor jezelf.`;
+    const vrijMnd = Math.round((1 - pctNet/100) * 12);
+    let tekst = `Je betaalt ${eu(totaalJaarlijks/12)} per maand aan belastingen — ${eu(totaalJaarlijks/365)} per dag. `;
+    if (totaalToeslagen > 0.5) {
+      tekst += `Na toeslagen (${eu(totaalToeslagen/12)}/maand terug) is je netto afdracht ${eu(nettoBelasting/12)}/maand. `;
+    }
+    tekst += `De eerste ${vrijMnd} maanden van het jaar werk je voor jezelf.`;
+    g('r-factoid').textContent = tekst;
   } else {
     g('r-factoid').textContent = 'Bereken jouw belastingdruk om meer te weten te komen.';
   }
 }
+
+// Initialiseer: zorg dat huurtoeslag-blok correct zichtbaar is op basis van standaard woningtype
+(function() {
+  const isHuur = document.querySelector('[data-g="woning-type"].aan')?.dataset.v === 'huur';
+  const huurBlok = g('blok-huurtoeslag');
+  const geenHuurBlok = g('blok-geen-huurtoeslag');
+  if (huurBlok)     huurBlok.classList.toggle('toon', isHuur);
+  if (geenHuurBlok) geenHuurBlok.style.display = isHuur ? 'none' : 'block';
+})();
 
 herbereken();
 </script>
