@@ -374,22 +374,101 @@
       </div>
 
       <div id="blok-aankoop" class="condblok">
+
         <div class="veld">
           <label>Type aankoop</label>
           <div class="toggles">
             <button class="btn-toggle" data-g="aankoop-type" data-v="starter"
-                    onclick="tog(this)">Starter eigen woning <span class="hint">(0% als ≤ €510k)</span></button>
+                    onclick="tog(this); g('blok-fin-aankoop').style.display='block'">Starter eigen woning <span class="hint">(0% als ≤ €510k)</span></button>
             <button class="btn-toggle aan" data-g="aankoop-type" data-v="eigen"
-                    onclick="tog(this)">Eigen woning <span class="hint">(2%)</span></button>
+                    onclick="tog(this); g('blok-fin-aankoop').style.display='block'">Eigen woning <span class="hint">(2%)</span></button>
             <button class="btn-toggle" data-g="aankoop-type" data-v="belegging"
-                    onclick="tog(this)">Belegging / 2e woning <span class="hint">(10,4%)</span></button>
+                    onclick="tog(this); g('blok-fin-aankoop').style.display='none'">Belegging / 2e woning <span class="hint">(10,4%)</span></button>
           </div>
         </div>
-        <div class="veld">
-          <label>Aankoopprijs</label>
-          <input type="number" id="in-aankoopprijs" value="400000" min="0" oninput="herbereken()">
+
+        <div class="col2">
+          <div class="veld">
+            <label>Aankoopprijs</label>
+            <input type="number" id="in-aankoopprijs" value="400000" min="0" oninput="herbereken()">
+          </div>
+          <div class="veld">
+            <label>Aankoopmaand <span class="hint">— voor renteaftrek dit jaar</span></label>
+            <input type="number" id="in-aankoopmaand" value="6" min="1" max="12" oninput="herbereken()">
+          </div>
         </div>
-      </div>
+
+        <!-- Financieringsblok: alleen zichtbaar voor eigen woning / starter -->
+        <div id="blok-fin-aankoop" style="display:block; margin-top:14px; padding-top:14px; border-top:1px solid var(--grijs-rand);">
+
+          <div class="sectie-kopje" style="margin-top:0; border-top:none; padding-top:0;">Hypotheek nieuwe woning</div>
+
+          <div class="veld">
+            <label>Hypotheekvorm <span class="hint">— bepaalt recht op renteaftrek</span></label>
+            <div class="toggles">
+              <button class="btn-toggle aan" data-g="hyp-nieuw-type" data-v="annuiteit"
+                      onclick="tog(this); g('blok-looptijd').style.display='block'; herbereken()">Annuïteit / Lineair <span class="hint">(renteaftrek)</span></button>
+              <button class="btn-toggle" data-g="hyp-nieuw-type" data-v="aflossingsvrij"
+                      onclick="tog(this); g('blok-looptijd').style.display='none'; herbereken()">Aflossingsvrij <span class="hint">(geen aftrek)</span></button>
+            </div>
+          </div>
+
+          <div class="col2">
+            <div class="veld">
+              <label>Hypotheekbedrag</label>
+              <input type="number" id="in-hyp-nieuw" value="350000" min="0" oninput="herbereken()">
+            </div>
+            <div class="veld">
+              <label>Hypotheekrente (%)</label>
+              <input type="number" id="in-rente-nieuw" value="4.2" min="0" max="20" step="0.1" oninput="herbereken()">
+            </div>
+          </div>
+
+          <div id="blok-looptijd" style="display:block;">
+            <div class="veld">
+              <label>Looptijd (jaren) <span class="hint">— max. 30 jaar voor renteaftrek</span></label>
+              <input type="number" id="in-looptijd" value="30" min="1" max="360" oninput="herbereken()">
+            </div>
+          </div>
+
+          <div class="veld">
+            <label>NHG (Nationale Hypotheek Garantie) <span class="hint">— 0,6% van hypotheek, aftrekbaar als eigen woning ≤ €435k</span></label>
+            <div class="toggles">
+              <button class="btn-toggle aan" data-g="nhg" data-v="nee" onclick="tog(this); herbereken()">Nee</button>
+              <button class="btn-toggle" data-g="nhg" data-v="ja"  onclick="tog(this); herbereken()">Ja</button>
+            </div>
+          </div>
+
+          <div class="sectie-kopje">Eenmalige financieringskosten <span class="hint" style="text-transform:none;letter-spacing:0;">(aftrekbaar bij annuïteit/lineair ≤ 30 jaar)</span></div>
+
+          <div class="col2">
+            <div class="veld">
+              <label>Notariskosten hypotheekakte</label>
+              <input type="number" id="in-notaris" value="1200" min="0" oninput="herbereken()">
+            </div>
+            <div class="veld">
+              <label>Taxatiekosten</label>
+              <input type="number" id="in-taxatie" value="600" min="0" oninput="herbereken()">
+            </div>
+          </div>
+          <div class="col2">
+            <div class="veld">
+              <label>Advies- &amp; bemiddelingskosten</label>
+              <input type="number" id="in-advies" value="3000" min="0" oninput="herbereken()">
+            </div>
+            <div class="veld">
+              <label>Overige financieringskosten</label>
+              <input type="number" id="in-fin-overig" value="0" min="0" oninput="herbereken()">
+            </div>
+          </div>
+
+          <div id="info-aftrek" style="font-size:12px;color:var(--grijs-mid);margin-top:10px;padding:8px 10px;background:var(--groen-zacht);border-left:3px solid var(--groen);border-radius:3px;display:none;">
+            💡 Geschatte aftrekpost dit jaar: <strong id="r-aftrek-bedrag">€ 0</strong>
+            <div id="r-aftrek-sub" style="margin-top:3px;"></div>
+          </div>
+
+        </div><!-- /blok-fin-aankoop -->
+      </div><!-- /blok-aankoop -->
     </div>
 
     <!-- ENERGIE -->
@@ -738,6 +817,10 @@ const S = {
   rendSpaar: 1.5, rendBeleg: 7.0, rendVastgoed: 4.5,
   woningType: 'huur', woz: 400000, hypotheek: 235000, rente: 4.2,
   aankoopJa: false, aankoopType: 'eigen', aankoopPrijs: 400000,
+  aankoopMaand: 6,
+  aankoopHypType: 'annuiteit', aankoopHypBedrag: 350000, aankoopRente: 4.2, aankoopLooptijd: 30,
+  aankoopNHG: false,
+  aankoopNotaris: 1200, aankoopTaxatie: 600, aankoopAdvies: 3000, aankoopFinOverig: 0,
   kwh: 3000, m3: 1400,
   energieWoning: 'rijtjeswoning', energieLabel: 'C',
   autoType: 'geen', km: 15000, verbruik: 7, vluchten: 2,
@@ -797,8 +880,18 @@ function leesDom() {
   S.woz            = gv('in-woz');
   S.hypotheek      = gv('in-hypotheek');
   S.rente          = gv('in-rente');
-  S.aankoopPrijs   = gv('in-aankoopprijs');
-  S.kwh            = gv('sl-kwh') || 3500;
+  S.aankoopPrijs      = gv('in-aankoopprijs');
+  S.aankoopMaand      = Math.min(12, Math.max(1, gv('in-aankoopmaand') || 6));
+  S.aankoopHypType    = aktief('hyp-nieuw-type') || 'annuiteit';
+  S.aankoopHypBedrag  = gv('in-hyp-nieuw');
+  S.aankoopRente      = parseFloat(document.getElementById('in-rente-nieuw')?.value) || 0;
+  S.aankoopLooptijd   = gv('in-looptijd') || 30;
+  S.aankoopNHG        = aktief('nhg') === 'ja';
+  S.aankoopNotaris    = gv('in-notaris');
+  S.aankoopTaxatie    = gv('in-taxatie');
+  S.aankoopAdvies     = gv('in-advies');
+  S.aankoopFinOverig  = gv('in-fin-overig');
+  S.kwh               = gv('sl-kwh') || 3500;
   S.m3             = gv('sl-m3')  || 1500;
   S.km             = gv('sl-km')  || 15000;
   S.verbruik       = gv('in-verbruik') || 7;
@@ -841,6 +934,24 @@ function calcEconomischInkomen() {
   return S.inkomen + werkelijkBox3 + S.dividend;
 }
 
+// ── Aankoopaftrek: renteaftrek + financieringskosten bij eigen woning ──
+function calcAankoopAftrek() {
+  if (!S.aankoopJa) return { totaal: 0, rente: 0, fin: 0 };
+  if (S.aankoopType === 'belegging') return { totaal: 0, rente: 0, fin: 0 };
+  if (S.aankoopHypType !== 'annuiteit') return { totaal: 0, rente: 0, fin: 0 };
+  if (S.aankoopLooptijd > 30) return { totaal: 0, rente: 0, fin: 0 };
+
+  // Rente aftrek: resterende maanden na aankoop t/m december
+  const maandenRest = Math.max(0, 13 - S.aankoopMaand);
+  const rente = S.aankoopHypBedrag * (S.aankoopRente / 100) * (maandenRest / 12);
+
+  // Financieringskosten
+  const nhg = S.aankoopNHG ? S.aankoopHypBedrag * 0.006 : 0;
+  const fin = nhg + S.aankoopNotaris + S.aankoopTaxatie + S.aankoopAdvies + S.aankoopFinOverig;
+
+  return { totaal: rente + fin, rente, fin, nhg, maandenRest };
+}
+
 // ── Box 1: Inkomstenbelasting + premies volksverz. ──
 function calcBox1() {
   const bruto = S.inkomen;
@@ -852,6 +963,10 @@ function calcBox1() {
     let ewf = S.woz <= 1200000 ? S.woz * 0.0035 : 1200000*0.0035 + (S.woz-1200000)*0.02;
     bi = Math.max(0, bi + ewf - S.hypotheek * (S.rente/100));
   }
+
+  // Aftrek financieringskosten + rente nieuwe woning
+  const aftrek = calcAankoopAftrek();
+  bi = Math.max(0, bi - aftrek.totaal);
 
   const GRENS1 = 75518, T1 = 0.3697, T2 = 0.4950;
   let bel = bi <= GRENS1 ? bi*T1 : GRENS1*T1 + (bi-GRENS1)*T2;
@@ -1097,6 +1212,22 @@ function herbereken() {
   const econInkomen        = calcEconomischInkomen();
   const pct    = econInkomen > 0 ? totaalJaarlijks / econInkomen * 100 : 0;
   const pctNet = econInkomen > 0 ? nettoBelasting   / econInkomen * 100 : 0;
+
+  // Aftrek-infoblok bijwerken
+  const aftrek = calcAankoopAftrek();
+  const aftrekEl = g('info-aftrek');
+  if (aftrekEl) {
+    if (aftrek.totaal > 0.5) {
+      aftrekEl.style.display = 'block';
+      g('r-aftrek-bedrag').textContent = eu(aftrek.totaal);
+      const delen = [];
+      if (aftrek.rente > 0.5) delen.push(`Renteaftrek ${aftrek.maandenRest} mnd: ${eu(aftrek.rente)}`);
+      if (aftrek.fin  > 0.5) delen.push(`Financieringskosten: ${eu(aftrek.fin)}`);
+      g('r-aftrek-sub').textContent = delen.join(' · ');
+    } else {
+      aftrekEl.style.display = 'none';
+    }
+  }
 
   g('r-totaal').textContent = eu(totaalInclEenmalig);
   g('r-pct').textContent    = Math.round(pct) + '%';
