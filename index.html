@@ -292,22 +292,41 @@
 
       <div class="col2">
         <div class="veld">
-          <label>Spaargeld <span class="hint">— rendement 1,03%</span></label>
+          <label>Spaargeld <span class="hint">— fictief rendement 1,03%</span></label>
           <input type="number" id="in-spaar" value="25000" min="0" oninput="herbereken()">
         </div>
         <div class="veld">
-          <label>Beleggingen <span class="hint">— rendement 5,88%</span></label>
+          <label>Beleggingen <span class="hint">— fictief rendement 5,88%</span></label>
           <input type="number" id="in-beleg" value="0" min="0" oninput="herbereken()">
         </div>
       </div>
 
       <div class="veld">
-        <label>Overig vastgoed Box 3 <span class="hint">— WOZ-waarde, rendement 6,17%</span></label>
+        <label>Overig vastgoed Box 3 <span class="hint">— WOZ-waarde, fictief rendement 6,17%</span></label>
         <input type="number" id="in-vastgoed3" value="0" min="0" oninput="herbereken()">
       </div>
 
       <div style="font-size:12px;color:var(--grijs-mid);margin-top:8px;padding:8px 10px;background:var(--blauw-zacht);border-radius:3px;">
         💡 Vrijstelling 2025: € 57.000 (alleenstaand). Over het meerdere betaal je heffing op basis van fictief rendement.
+      </div>
+
+      <div class="sectie-kopje">Werkelijk rendement (voor Roofdag-berekening)</div>
+      <p style="font-size:13px;color:var(--grijs-mid);margin-bottom:14px;">
+        Het werkelijk rendement telt mee als economisch inkomen bij het berekenen van de belastingdruk-ratio. Negatieve percentages zijn mogelijk.
+      </p>
+      <div class="col2">
+        <div class="veld">
+          <label>Rendement spaargeld <span class="hint">(%)</span></label>
+          <input type="number" id="in-rend-spaar" value="1.5" step="0.1" oninput="herbereken()">
+        </div>
+        <div class="veld">
+          <label>Rendement beleggingen <span class="hint">(%)</span></label>
+          <input type="number" id="in-rend-beleg" value="7.0" step="0.1" oninput="herbereken()">
+        </div>
+      </div>
+      <div class="veld">
+        <label>Rendement vastgoed Box 3 <span class="hint">(%)</span></label>
+        <input type="number" id="in-rend-vastgoed" value="4.5" step="0.1" oninput="herbereken()">
       </div>
     </div>
 
@@ -654,13 +673,19 @@
       <div class="totaal-label">Belastingen &amp; heffingen (bruto)</div>
       <div class="totaal-bedrag" id="r-totaal">€ 0</div>
       <div class="totaal-sub">alle belastingen samen (excl. eenmalig)</div>
-      <div class="totaal-pct">= <span class="big" id="r-pct">0%</span> van bruto inkomen</div>
+      <div class="totaal-pct">= <span class="big" id="r-pct">0%</span> van economisch inkomen</div>
 
       <div class="roofdag-blok">
         <div class="vd-label">Jouw Roofdag</div>
         <strong id="r-datum">–</strong>
         <div class="vd-tekst" id="r-vd-tekst">Vul je inkomen in om te berekenen.</div>
       </div>
+    </div>
+
+    <div id="r-econ-inkomen" style="display:none;background:var(--blauw-zacht);border:1px solid var(--blauw-licht);border-radius:4px;padding:12px 16px;margin-bottom:12px;">
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--blauw);margin-bottom:4px;">Economisch inkomen</div>
+      <div style="font-size:20px;font-weight:700;color:var(--blauw);" id="r-econ-bedrag">€ 0</div>
+      <div style="font-size:12px;color:var(--grijs-mid);margin-top:3px;" id="r-econ-sub"></div>
     </div>
 
     <div class="toeslag-blok" id="blok-toeslagen-resultaat" style="display:none;">
@@ -710,6 +735,7 @@ const S = {
   inkomen: 40000, inkomstenType: 'werk',
   dividend: 0,
   spaar: 25000, beleggingen: 0, vastgoedBox3: 0,
+  rendSpaar: 1.5, rendBeleg: 7.0, rendVastgoed: 4.5,
   woningType: 'huur', woz: 400000, hypotheek: 235000, rente: 4.2,
   aankoopJa: false, aankoopType: 'eigen', aankoopPrijs: 400000,
   kwh: 3000, m3: 1400,
@@ -765,6 +791,9 @@ function leesDom() {
   S.spaar          = gv('in-spaar');
   S.beleggingen    = gv('in-beleg');
   S.vastgoedBox3   = gv('in-vastgoed3');
+  S.rendSpaar      = parseFloat(document.getElementById('in-rend-spaar')?.value) || 0;
+  S.rendBeleg      = parseFloat(document.getElementById('in-rend-beleg')?.value) || 0;
+  S.rendVastgoed   = parseFloat(document.getElementById('in-rend-vastgoed')?.value) || 0;
   S.woz            = gv('in-woz');
   S.hypotheek      = gv('in-hypotheek');
   S.rente          = gv('in-rente');
@@ -802,6 +831,14 @@ function leesDom() {
   S.opvang         = aktief('opvang')         || 'nee';
   S.opvangKosten   = gv('in-opvangkosten');
   S.opvangType     = aktief('opvang-type')    || 'dagopvang';
+}
+
+// ── Werkelijk economisch inkomen (voor Roofdag-ratio) ──
+function calcEconomischInkomen() {
+  const werkelijkBox3 = S.spaar       * (S.rendSpaar    / 100)
+                      + S.beleggingen * (S.rendBeleg     / 100)
+                      + S.vastgoedBox3* (S.rendVastgoed  / 100);
+  return S.inkomen + werkelijkBox3 + S.dividend;
 }
 
 // ── Box 1: Inkomstenbelasting + premies volksverz. ──
@@ -1062,13 +1099,29 @@ function herbereken() {
 
   // Toeslagen
   const toeslagenItems = calcToeslagen();
-  const totaalToeslagen = toeslagenItems.reduce((s,t)=>s+t.bedrag, 0);
-  const nettoBelasting  = Math.max(0, totaalJaarlijks - totaalToeslagen);
-  const pct    = S.inkomen > 0 ? totaalJaarlijks / S.inkomen * 100 : 0;
-  const pctNet = S.inkomen > 0 ? nettoBelasting   / S.inkomen * 100 : 0;
+  const totaalToeslagen    = toeslagenItems.reduce((s,t)=>s+t.bedrag, 0);
+  const nettoBelasting     = Math.max(0, totaalJaarlijks - totaalToeslagen);
+  const econInkomen        = calcEconomischInkomen();
+  const pct    = econInkomen > 0 ? totaalJaarlijks / econInkomen * 100 : 0;
+  const pctNet = econInkomen > 0 ? nettoBelasting   / econInkomen * 100 : 0;
 
   g('r-totaal').textContent = eu(totaalInclEenmalig);
   g('r-pct').textContent    = Math.round(pct) + '%';
+  // Toon economisch inkomen als het afwijkt van Box 1 inkomen
+  const econEl = g('r-econ-inkomen');
+  if (econEl) {
+    const werkelijkBox3 = econInkomen - S.inkomen - S.dividend;
+    if (Math.abs(werkelijkBox3) > 1 || S.dividend > 0) {
+      econEl.style.display = 'block';
+      g('r-econ-bedrag').textContent = eu(econInkomen);
+      g('r-econ-sub').textContent =
+        'Box 1: ' + eu(S.inkomen) +
+        (S.dividend > 0 ? ' · Dividend: ' + eu(S.dividend) : '') +
+        (Math.abs(werkelijkBox3) > 1 ? ' · Box 3 rendement: ' + eu(werkelijkBox3) : '');
+    } else {
+      econEl.style.display = 'none';
+    }
+  }
 
   // Toeslagen-blok tonen/verbergen
   const tbEl = g('blok-toeslagen-resultaat');
@@ -1084,13 +1137,13 @@ function herbereken() {
     tbEl.style.display = 'none';
   }
 
-  // Roofdag op basis van NETTO belastingdruk
+  // Roofdag op basis van NETTO belastingdruk t.o.v. economisch inkomen
   const dagNr = Math.round((1 - pctNet/100) * 365);
-  if (S.inkomen > 0 && totaalJaarlijks > 0) {
+  if (econInkomen > 0 && totaalJaarlijks > 0) {
     g('r-datum').textContent = datumVanDag(dagNr);
     g('r-vd-tekst').textContent = totaalToeslagen > 0.5
-      ? `Na aftrek van toeslagen (${Math.round(pctNet)}% netto druk).`
-      : 'Vanaf die dag werk je uitsluitend voor de overheid.';
+      ? `Na aftrek van toeslagen (${Math.round(pctNet)}% netto druk op economisch inkomen).`
+      : `Gebaseerd op ${Math.round(pctNet)}% druk op economisch inkomen.`;
   } else {
     g('r-datum').textContent    = '–';
     g('r-vd-tekst').textContent = 'Vul je inkomen in om te berekenen.';
@@ -1118,11 +1171,14 @@ function herbereken() {
   }
 
   // Factoid
-  if (S.inkomen > 0 && totaalJaarlijks > 0) {
+  if (econInkomen > 0 && totaalJaarlijks > 0) {
     const vrijMnd = Math.round((1 - pctNet/100) * 12);
     let tekst = `Je betaalt ${eu(totaalJaarlijks/12)} per maand aan belastingen — ${eu(totaalJaarlijks/365)} per dag. `;
     if (totaalToeslagen > 0.5) {
       tekst += `Na toeslagen (${eu(totaalToeslagen/12)}/maand terug) is je netto afdracht ${eu(nettoBelasting/12)}/maand. `;
+    }
+    if (econInkomen !== S.inkomen) {
+      tekst += `Economisch inkomen (incl. Box 3 rendement): ${eu(econInkomen)}. `;
     }
     tekst += `De eerste ${vrijMnd} maanden van het jaar werk je voor jezelf.`;
     g('r-factoid').textContent = tekst;
