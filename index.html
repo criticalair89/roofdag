@@ -270,7 +270,7 @@
       <div class="col2">
         <div class="veld">
           <label>Spaargeld <span class="hint">— rendement 1,03%</span></label>
-          <input type="number" id="in-spaar" value="0" min="0" oninput="herbereken()">
+          <input type="number" id="in-spaar" value="25000" min="0" oninput="herbereken()">
         </div>
         <div class="veld">
           <label>Beleggingen <span class="hint">— rendement 5,88%</span></label>
@@ -306,11 +306,11 @@
         <div class="col2">
           <div class="veld">
             <label>WOZ-waarde</label>
-            <input type="number" id="in-woz" value="350000" min="0" oninput="herbereken()">
+            <input type="number" id="in-woz" value="400000" min="0" oninput="herbereken()">
           </div>
           <div class="veld">
             <label>Hypotheekschuld</label>
-            <input type="number" id="in-hypotheek" value="280000" min="0" oninput="herbereken()">
+            <input type="number" id="in-hypotheek" value="235000" min="0" oninput="herbereken()">
           </div>
         </div>
         <div class="veld">
@@ -345,7 +345,7 @@
         </div>
         <div class="veld">
           <label>Aankoopprijs</label>
-          <input type="number" id="in-aankoopprijs" value="350000" min="0" oninput="herbereken()">
+          <input type="number" id="in-aankoopprijs" value="400000" min="0" oninput="herbereken()">
         </div>
       </div>
     </div>
@@ -354,21 +354,60 @@
     <div class="card">
       <div class="card-titel"><span class="ic">⚡</span><h2>Energie</h2></div>
 
+      <div class="sectie-kopje" style="margin-top:0;border-top:none;padding-top:0;">Verbruiksschatting op basis van woning</div>
+
+      <div class="veld">
+        <label>Type woning</label>
+        <div class="toggles">
+          <button class="btn-toggle" data-g="energie-woning" data-v="appartement"
+                  onclick="tog(this); vulEnergie()">Appartement</button>
+          <button class="btn-toggle aan" data-g="energie-woning" data-v="rijtjeswoning"
+                  onclick="tog(this); vulEnergie()">Rijtjeswoning</button>
+          <button class="btn-toggle" data-g="energie-woning" data-v="hoekwoning"
+                  onclick="tog(this); vulEnergie()">Hoekwoning</button>
+          <button class="btn-toggle" data-g="energie-woning" data-v="twee_onder_een_kap"
+                  onclick="tog(this); vulEnergie()">2-onder-1-kap</button>
+          <button class="btn-toggle" data-g="energie-woning" data-v="vrijstaand"
+                  onclick="tog(this); vulEnergie()">Vrijstaand</button>
+        </div>
+      </div>
+
+      <div class="veld">
+        <label>Energielabel</label>
+        <div class="toggles">
+          <button class="btn-toggle" data-g="energie-label" data-v="A++" onclick="tog(this); vulEnergie()">A++</button>
+          <button class="btn-toggle" data-g="energie-label" data-v="A+"  onclick="tog(this); vulEnergie()">A+</button>
+          <button class="btn-toggle" data-g="energie-label" data-v="A"   onclick="tog(this); vulEnergie()">A</button>
+          <button class="btn-toggle" data-g="energie-label" data-v="B"   onclick="tog(this); vulEnergie()">B</button>
+          <button class="btn-toggle aan" data-g="energie-label" data-v="C" onclick="tog(this); vulEnergie()">C</button>
+          <button class="btn-toggle" data-g="energie-label" data-v="D"   onclick="tog(this); vulEnergie()">D</button>
+          <button class="btn-toggle" data-g="energie-label" data-v="E"   onclick="tog(this); vulEnergie()">E</button>
+          <button class="btn-toggle" data-g="energie-label" data-v="F"   onclick="tog(this); vulEnergie()">F</button>
+          <button class="btn-toggle" data-g="energie-label" data-v="G"   onclick="tog(this); vulEnergie()">G</button>
+        </div>
+      </div>
+
+      <div style="font-size:12px;color:var(--grijs-mid);padding:6px 10px;background:var(--blauw-zacht);border-radius:3px;margin-bottom:16px;">
+        💡 Verbruik automatisch ingevuld op basis van type &amp; label — pas hieronder handmatig aan indien gewenst.
+      </div>
+
+      <div class="sectie-kopje">Werkelijk verbruik (handmatig aanpasbaar)</div>
+
       <div class="veld">
         <label>Elektriciteitsverbruik per jaar <span class="hint">— kWh</span></label>
         <div class="slider-rij">
-          <input type="range" id="sl-kwh" min="0" max="15000" step="100" value="3500"
+          <input type="range" id="sl-kwh" min="0" max="15000" step="100" value="3000"
                  oninput="slUpdate('kwh',+this.value)">
-          <div class="slider-val" id="sw-kwh">3.500 kWh</div>
+          <div class="slider-val" id="sw-kwh">3.000 kWh</div>
         </div>
       </div>
 
       <div class="veld">
         <label>Gasverbruik per jaar <span class="hint">— m³</span></label>
         <div class="slider-rij">
-          <input type="range" id="sl-m3" min="0" max="5000" step="50" value="1500"
+          <input type="range" id="sl-m3" min="0" max="5000" step="50" value="1400"
                  oninput="slUpdate('m3',+this.value)">
-          <div class="slider-val" id="sw-m3">1.500 m³</div>
+          <div class="slider-val" id="sw-m3">1.400 m³</div>
         </div>
       </div>
 
@@ -436,7 +475,7 @@
         </div>
         <div class="veld">
           <label>Niet-eetbaar <span class="hint">— 21% BTW</span></label>
-          <input type="number" id="in-niet-eetbaar" value="150" min="0" oninput="herbereken()">
+          <input type="number" id="in-niet-eetbaar" value="80" min="0" oninput="herbereken()">
         </div>
       </div>
 
@@ -444,15 +483,15 @@
       <div class="col2">
         <div class="veld">
           <label>Kleding / schoenen <span class="hint">— 21%</span></label>
-          <input type="number" id="in-kleding" value="100" min="0" oninput="herbereken()">
+          <input type="number" id="in-kleding" value="75" min="0" oninput="herbereken()">
         </div>
         <div class="veld">
           <label>Horeca / uit eten <span class="hint">— 9%</span></label>
-          <input type="number" id="in-horeca" value="150" min="0" oninput="herbereken()">
+          <input type="number" id="in-horeca" value="100" min="0" oninput="herbereken()">
         </div>
         <div class="veld">
           <label>Elektronica / diversen <span class="hint">— 21%</span></label>
-          <input type="number" id="in-diversen" value="100" min="0" oninput="herbereken()">
+          <input type="number" id="in-diversen" value="75" min="0" oninput="herbereken()">
         </div>
         <div class="veld">
           <label>Abonnementen / diensten <span class="hint">— 21%</span></label>
@@ -561,12 +600,13 @@
 const S = {
   inkomen: 40000, inkomstenType: 'werk',
   dividend: 0,
-  spaar: 0, beleggingen: 0, vastgoedBox3: 0,
-  woningType: 'huur', woz: 350000, hypotheek: 280000, rente: 4.2,
-  aankoopJa: false, aankoopType: 'eigen', aankoopPrijs: 350000,
-  kwh: 3500, m3: 1500,
+  spaar: 25000, beleggingen: 0, vastgoedBox3: 0,
+  woningType: 'huur', woz: 400000, hypotheek: 235000, rente: 4.2,
+  aankoopJa: false, aankoopType: 'eigen', aankoopPrijs: 400000,
+  kwh: 3000, m3: 1400,
+  energieWoning: 'rijtjeswoning', energieLabel: 'C',
   autoType: 'geen', km: 15000, verbruik: 7, vluchten: 2,
-  eetbaar: 350, nietEetbaar: 150, kleding: 100, horeca: 150, diversen: 100, abonnementen: 100,
+  eetbaar: 350, nietEetbaar: 80, kleding: 75, horeca: 100, diversen: 75, abonnementen: 100,
   roken: 'nee', alcohol: 'geen',
   afval: 320, riool: 220, waterschap: 130, parkeer: 0,
 };
@@ -630,13 +670,15 @@ function leesDom() {
   S.riool          = gv('in-riool');
   S.waterschap     = gv('in-waterschap');
   S.parkeer        = gv('in-parkeer');
-  S.inkomstenType  = aktief('inkomen-type') || 'werk';
-  S.woningType     = aktief('woning-type')  || 'huur';
-  S.autoType       = aktief('auto-type')    || 'geen';
-  S.aankoopJa      = aktief('aankoop')      === 'ja';
-  S.aankoopType    = aktief('aankoop-type') || 'eigen';
-  S.roken          = aktief('roken')        || 'nee';
-  S.alcohol        = aktief('alcohol')      || 'geen';
+  S.inkomstenType  = aktief('inkomen-type')   || 'werk';
+  S.woningType     = aktief('woning-type')    || 'huur';
+  S.autoType       = aktief('auto-type')      || 'geen';
+  S.aankoopJa      = aktief('aankoop')        === 'ja';
+  S.aankoopType    = aktief('aankoop-type')   || 'eigen';
+  S.roken          = aktief('roken')          || 'nee';
+  S.alcohol        = aktief('alcohol')        || 'geen';
+  S.energieWoning  = aktief('energie-woning') || 'rijtjeswoning';
+  S.energieLabel   = aktief('energie-label')  || 'C';
 }
 
 // ── Box 1: Inkomstenbelasting + premies volksverz. ──
@@ -747,6 +789,29 @@ function calcOverdrachts() {
   if (S.aankoopType==='eigen')    return S.aankoopPrijs * 0.02;
   if (S.aankoopType==='belegging') return S.aankoopPrijs * 0.104;
   return S.aankoopPrijs * 0.02;
+}
+
+// ── Energieverbruik defaults per woningtype + label ──
+// [kWh/jaar, m³ gas/jaar] — gebaseerd op RVO/CBS gemiddelden 2024
+// A++ en A+ zijn doorgaans volledig elektrisch (warmtepomp), gas ≈ 0
+const ENERGIE_DEFAULTS = {
+  appartement:        { 'A++':[1100,  0],'A+':[1200, 50],'A':[1500,200],'B':[1800,450],'C':[2000, 700],'D':[2300,1000],'E':[2600,1200],'F':[2900,1500],'G':[3200,1800] },
+  rijtjeswoning:      { 'A++':[1800,  0],'A+':[2000,150],'A':[2200,500],'B':[2700,950],'C':[3000,1400],'D':[3400,1800],'E':[3800,2100],'F':[4200,2500],'G':[4600,2900] },
+  hoekwoning:         { 'A++':[2000,  0],'A+':[2200,200],'A':[2600,600],'B':[3100,1100],'C':[3500,1600],'D':[3900,2000],'E':[4300,2400],'F':[4700,2800],'G':[5100,3200] },
+  twee_onder_een_kap: { 'A++':[2200,  0],'A+':[2600,250],'A':[2900,700],'B':[3500,1300],'C':[4000,1900],'D':[4500,2400],'E':[4900,2800],'F':[5300,3200],'G':[5800,3700] },
+  vrijstaand:         { 'A++':[2800,  0],'A+':[3300,350],'A':[3700,950],'B':[4400,1700],'C':[5200,2500],'D':[5800,3100],'E':[6300,3500],'F':[6900,4000],'G':[7500,4500] },
+};
+
+function vulEnergie() {
+  const type  = aktief('energie-woning') || 'rijtjeswoning';
+  const label = aktief('energie-label')  || 'C';
+  const vals  = (ENERGIE_DEFAULTS[type] || {})[label];
+  if (!vals) return;
+  const [kwh, m3] = vals;
+  g('sl-kwh').value = kwh;  g('sw-kwh').textContent = nl(kwh) + ' kWh';
+  g('sl-m3').value  = m3;   g('sw-m3').textContent  = nl(m3)  + ' m³';
+  S.kwh = kwh; S.m3 = m3;
+  herbereken();
 }
 
 // ── Gemeentelijke lasten ──
