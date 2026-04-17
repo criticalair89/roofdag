@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wat kost asielopvang de Nederlandse belastingbetaler? – Roofdag.nl</title>
+  <meta name="description" content="Hoeveel betaalt de Nederlandse belastingbetaler voor de opvang en begeleiding van asielzoekers uit veilige landen? Een analyse van de kosten en de beleidslogica.">
+  <meta property="og:title" content="Wat kost asielopvang de Nederlandse belastingbetaler?">
+  <meta property="og:type" content="article">
+  <style>
+    :root{--blauw:#01689b;--blauw-donker:#154273;--blauw-licht:#cce4f0;--blauw-zacht:#e8f4f9;--geel:#f9c231;--rood:#d52b1e;--grijs:#f5f5f5;--grijs-rand:#b4b4b4;--grijs-mid:#696969;--tekst:#1a1a1a;--wit:#ffffff;--ink:#1a1a2e;}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:"Georgia","Times New Roman",serif;background:var(--grijs);color:var(--tekst);line-height:1.8;font-size:17px;}
+    .topbalk{background:var(--blauw-donker);height:6px;}
+    header{background:var(--wit);border-bottom:1px solid var(--grijs-rand);padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:72px;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,0.08);}
+    .logo-wrap{display:flex;align-items:center;gap:14px;text-decoration:none;}
+    .logo-schild{width:44px;height:44px;background:var(--blauw);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:22px;}
+    .logo-tekst{display:flex;flex-direction:column;line-height:1.2;}
+    .logo-naam{font-size:18px;font-weight:700;color:var(--blauw);font-family:"Segoe UI",Arial,sans-serif;}
+    .logo-sub{font-size:11px;color:var(--grijs-mid);font-family:"Segoe UI",Arial,sans-serif;}
+    nav{display:flex;align-items:center;gap:20px;font-family:"Segoe UI",Arial,sans-serif;font-size:14px;}
+    nav a{color:var(--blauw);text-decoration:none;font-weight:600;}
+    nav a:hover{text-decoration:underline;}
+    .artikel-wrap{max-width:740px;margin:0 auto;padding:52px 24px 100px;}
+    .breadcrumb{font-family:"Segoe UI",Arial,sans-serif;font-size:13px;color:var(--grijs-mid);margin-bottom:32px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+    .breadcrumb a{color:var(--blauw);text-decoration:none;}
+    .artikel-meta-top{font-family:"Segoe UI",Arial,sans-serif;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--rood);margin-bottom:16px;}
+    h1{font-size:clamp(24px,4vw,38px);font-weight:700;line-height:1.2;color:var(--ink);margin-bottom:22px;letter-spacing:-0.4px;}
+    .byline{font-family:"Segoe UI",Arial,sans-serif;font-size:14px;color:var(--grijs-mid);display:flex;align-items:center;gap:18px;margin-bottom:36px;padding-bottom:28px;border-bottom:1px solid #ddd;flex-wrap:wrap;}
+    .byline .auteur{font-weight:600;color:var(--tekst);}
+    .byline .tag{background:var(--blauw-zacht);color:var(--blauw);border-radius:3px;padding:2px 8px;font-weight:600;font-size:12px;}
+    .inleiding{font-size:19px;line-height:1.7;color:#333;border-left:4px solid var(--rood);padding-left:20px;margin-bottom:36px;font-style:italic;}
+    .artikel-tekst h2{font-size:22px;font-weight:700;color:var(--ink);margin:44px 0 16px;font-family:"Segoe UI",Arial,sans-serif;}
+    .artikel-tekst p{margin-bottom:22px;}
+    .artikel-tekst strong{font-weight:700;color:var(--ink);}
+    .pullquote{background:var(--ink);color:var(--wit);border-radius:4px;padding:30px 32px;margin:40px 0;font-size:19px;line-height:1.55;font-style:italic;text-align:center;position:relative;}
+    .pullquote::before{content:'\201C';font-size:80px;color:var(--geel);position:absolute;top:-10px;left:20px;line-height:1;font-style:normal;}
+    .pullquote p{margin:0;color:var(--wit);}
+    .feitenkader{background:var(--blauw-zacht);border:1px solid var(--blauw-licht);border-left:4px solid var(--blauw);border-radius:4px;padding:22px 24px;margin:36px 0;font-family:"Segoe UI",Arial,sans-serif;}
+    .feitenkader h3{font-size:14px;font-weight:700;color:var(--blauw);margin-bottom:12px;text-transform:uppercase;letter-spacing:1px;}
+    .feitenkader ul{list-style:none;padding:0;}
+    .feitenkader ul li{font-size:14px;color:#333;padding:5px 0;border-bottom:1px solid rgba(1,104,155,0.12);display:flex;justify-content:space-between;align-items:baseline;}
+    .feitenkader ul li:last-child{border-bottom:none;}
+    .feitenkader ul li strong{color:var(--blauw-donker);}
+    .cta-kader{background:var(--blauw);color:var(--wit);border-radius:4px;padding:28px 32px;margin:44px 0;text-align:center;}
+    .cta-kader h3{font-family:"Segoe UI",Arial,sans-serif;font-size:18px;font-weight:700;margin-bottom:10px;}
+    .cta-kader p{font-family:"Segoe UI",Arial,sans-serif;font-size:14px;color:rgba(255,255,255,0.8);margin-bottom:20px;margin-top:0;}
+    .cta-knop{display:inline-block;background:var(--geel);color:var(--ink);font-family:"Segoe UI",Arial,sans-serif;font-size:15px;font-weight:700;padding:12px 28px;border-radius:3px;text-decoration:none;}
+    .discussie-kader{background:#fff8e6;border:1px solid #f0d070;border-left:4px solid var(--geel);border-radius:4px;padding:22px 24px;margin:36px 0;font-family:"Segoe UI",Arial,sans-serif;}
+    .discussie-kader h3{font-size:14px;font-weight:700;color:#7a5c00;margin-bottom:12px;text-transform:uppercase;letter-spacing:1px;}
+    .discussie-kader p{font-size:14px;color:#555;margin:0;line-height:1.6;}
+    .artikel-disclaimer{background:var(--grijs);border:1px solid var(--grijs-rand);border-radius:4px;padding:16px 20px;font-family:"Segoe UI",Arial,sans-serif;font-size:13px;color:var(--grijs-mid);margin-top:56px;line-height:1.55;}
+    .artikel-disclaimer a{color:var(--blauw);}
+    .terug{display:inline-flex;align-items:center;gap:6px;font-family:"Segoe UI",Arial,sans-serif;color:var(--blauw);text-decoration:none;font-size:14px;font-weight:600;margin-bottom:40px;}
+    .terug:hover{text-decoration:underline;}
+    footer{background:var(--blauw-donker);color:rgba(255,255,255,0.7);text-align:center;padding:28px 24px;font-family:"Segoe UI",Arial,sans-serif;font-size:13px;}
+    footer a{color:rgba(255,255,255,0.85);text-decoration:underline;}
+  </style>
+</head>
+<body>
+<div class="topbalk"></div>
+<header>
+  <a class="logo-wrap" href="/"><div class="logo-schild">🏛️</div><div class="logo-tekst"><span class="logo-naam">Roofdag.nl</span><span class="logo-sub">Belastingcalculator 2025</span></div></a>
+  <nav><a href="/">Calculator</a><a href="/blog/">Blog & Opinie</a></nav>
+</header>
+<div class="artikel-wrap">
+  <div class="breadcrumb"><a href="/">Roofdag.nl</a><span>›</span><a href="/blog/">Blog & Opinie</a><span>›</span><span>Asielopvang & belastingkosten</span></div>
+  <div class="artikel-meta-top">Opinie · Overheidsuitgaven · April 2026</div>
+  <h1>Wat kost asielopvang uit veilige landen de Nederlandse belastingbetaler?</h1>
+  <div class="byline">
+    <span class="auteur">Roofdag Redactie</span><span>·</span><span>April 2026</span>
+    <span class="tag">Opinie</span><span class="tag">Overheidsuitgaven</span>
+  </div>
+  <div class="inleiding">
+    Nederland geeft jaarlijks miljarden uit aan de opvang, begeleiding en juridische procedures van asielzoekers. Een groot deel van de instroom komt uit landen die door de EU als "veilig" zijn aangemerkt. Wat kost dit de belastingbetaler — en wat levert het op?
+  </div>
+  <div class="artikel-tekst">
+    <p>Het asieldossier is politiek beladen. Maar los van de politieke kleur is er een legitieme vraag die elke belastingbetaler mag stellen: <strong>hoeveel van mijn belastinggeld gaat naar asielopvang, en hoe wordt dat geld besteed?</strong> Roofdag.nl probeert die vraag zo feitelijk mogelijk te beantwoorden.</p>
+
+    <div class="feitenkader">
+      <h3>📊 Kosten asiel & migratie — indicatief 2024/2025</h3>
+      <ul>
+        <li><span>Totale uitgaven asiel, migratie & integratie</span><strong>~€ 7 mrd/jaar</strong></li>
+        <li><span>Opvangkosten per asielzoeker per dag (COA)</span><strong>~€ 75–100</strong></li>
+        <li><span>Gemiddelde verblijfsduur in opvang</span><strong>~18–24 maanden</strong></li>
+        <li><span>Kosten per procedure (IND + rechtbank)</span><strong>€ 10.000–30.000</strong></li>
+        <li><span>Aandeel instroom uit "veilige landen" (2024)</span><strong>~30–40%</strong></li>
+        <li><span>Inwilligingspercentage veilige-land-aanvragen</span><strong>&lt; 5%</strong></li>
+      </ul>
+    </div>
+
+    <h2>Wat zijn "veilige landen"?</h2>
+    <p>De Europese Unie hanteert een lijst van landen die als "veilig herkomstland" worden aangemerkt. Dit zijn landen waar in principe geen sprake is van systematische vervolging of oorlog, zoals Marokko, Algerije, Tunesië, Georgië en diverse Balkanlanden. Aanvragen uit deze landen worden versneld behandeld en hebben een zeer lage inwilligingskans.</p>
+    <p>Toch komen er jaarlijks tienduizenden aanvragen binnen vanuit deze landen. Elke aanvraag doorloopt een procedure bij de IND, en bij afwijzing volgt vaak een rechtszaak — soms meerdere. Gedurende die tijd verblijft de aanvrager in een COA-locatie, op kosten van de belastingbetaler.</p>
+
+    <h2>De rekening</h2>
+    <p>Een asielzoeker die twee jaar in de opvang verblijft en vervolgens wordt uitgezet, kost de overheid al snel 50.000 tot 70.000 euro, inclusief opvang, juridische procedures, tolken, medische zorg en uiteindelijk terugkeerkosten. Bij een instroomvolume van tienduizenden mensen per jaar uit veilige landen gaat het om een structurele kostenpost van <strong>meerdere miljarden euro per jaar</strong> — voor aanvragen die voor het overgrote deel worden afgewezen.</p>
+
+    <div class="pullquote">
+      <p>Voor elke euro die aan stikstofbeleid of woningbouw uitgegeven wordt, bestaat een politiek debat. Voor miljarden aan asielopvang met een inwilligingskans onder de 5% veel minder.</p>
+    </div>
+
+    <h2>Wat krijgen we ervoor terug?</h2>
+    <p>Voorstanders van ruimhartig asielbeleid wijzen op humanitaire verplichtingen, internationale verdragen en de economische bijdrage van erkende vluchtelingen op de arbeidsmarkt. Dat zijn legitieme argumenten — maar ze gelden primair voor mensen met een gegronde vrees voor vervolging, niet voor aanvragers uit landen die de EU zelf als veilig heeft aangemerkt.</p>
+    <p>De vraag is niet of Nederland humanitaire verplichtingen heeft — die zijn er. De vraag is of het huidige systeem, waarbij aanvragen uit veilige landen dezelfde tijdrovende en kostbare procedure doorlopen als aanvragen uit echte conflictgebieden, een efficiënte besteding is van belastinggeld.</p>
+
+    <h2>Wat zou anders kunnen?</h2>
+    <p>Meerdere Europese landen hebben de procedures voor veilige-landaanvragen versneld en de opvangstandaard gedifferentieerd. Denemarken en Zweden hebben hun systemen hervormd en de aantrekkingskracht sterk verminderd zonder de kernverplichtingen uit het Vluchtelingenverdrag te schenden. In Nederland is dit debat politiek gevoelig maar beleidsmatig niet onmogelijk.</p>
+
+    <div class="discussie-kader">
+      <h3>💬 Stelling voor discussie</h3>
+      <p><strong>"Asielzoekers uit landen die door de EU als veilig zijn aangemerkt zouden binnen 30 dagen een beslissing moeten krijgen, zonder recht op reguliere COA-opvang gedurende de procedure."</strong><br><br>Eens of oneens? Stuur je reactie naar [email invullen] of gebruik #roofdag op social media.</p>
+    </div>
+
+    <div class="cta-kader">
+      <h3>🗓️ Bereken jouw Roofdag</h3>
+      <p>Ontdek hoeveel dagen per jaar jij werkt voor de overheid — inclusief deze uitgaven.</p>
+      <a class="cta-knop" href="/">Naar de calculator →</a>
+    </div>
+  </div>
+  <div class="artikel-disclaimer">⚠️ Dit artikel is een opiniestuk op basis van openbare data van het COA, IND en CBS. Bedragen zijn indicatief. Dit is geen politiek standpunt namens Roofdag.nl maar een aanzet tot debat over overheidsuitgaven. Raadpleeg <a href="https://www.rijksoverheid.nl" target="_blank" rel="noopener">rijksoverheid.nl</a> voor officiële beleidsinformatie.</div>
+  <br><br>
+  <a class="terug" href="/blog/">← Terug naar alle artikelen</a>
+</div>
+<footer><p>© 2026 Roofdag.nl — <a href="/">Terug naar de calculator</a> · Alle teksten zijn opinie en indicatief, geen fiscaal advies.</p></footer>
+</body>
+</html>

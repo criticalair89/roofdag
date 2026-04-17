@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hoeveel betaal jij mee aan oorlog? – Roofdag.nl</title>
+  <meta name="description" content="Nederland geeft steeds meer uit aan defensie en militaire steun. Hoeveel draagt de belastingbetaler bij aan oorlogsfinanciering — en wie bepaalt dat?">
+  <meta property="og:title" content="Hoeveel betaal jij mee aan oorlog?">
+  <meta property="og:type" content="article">
+  <style>
+    :root{--blauw:#01689b;--blauw-donker:#154273;--blauw-licht:#cce4f0;--blauw-zacht:#e8f4f9;--geel:#f9c231;--rood:#d52b1e;--grijs:#f5f5f5;--grijs-rand:#b4b4b4;--grijs-mid:#696969;--tekst:#1a1a1a;--wit:#ffffff;--ink:#1a1a2e;}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:"Georgia","Times New Roman",serif;background:var(--grijs);color:var(--tekst);line-height:1.8;font-size:17px;}
+    .topbalk{background:var(--blauw-donker);height:6px;}
+    header{background:var(--wit);border-bottom:1px solid var(--grijs-rand);padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:72px;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,0.08);}
+    .logo-wrap{display:flex;align-items:center;gap:14px;text-decoration:none;}
+    .logo-schild{width:44px;height:44px;background:var(--blauw);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:22px;}
+    .logo-tekst{display:flex;flex-direction:column;line-height:1.2;}
+    .logo-naam{font-size:18px;font-weight:700;color:var(--blauw);font-family:"Segoe UI",Arial,sans-serif;}
+    .logo-sub{font-size:11px;color:var(--grijs-mid);font-family:"Segoe UI",Arial,sans-serif;}
+    nav{display:flex;align-items:center;gap:20px;font-family:"Segoe UI",Arial,sans-serif;font-size:14px;}
+    nav a{color:var(--blauw);text-decoration:none;font-weight:600;}
+    nav a:hover{text-decoration:underline;}
+    .artikel-wrap{max-width:740px;margin:0 auto;padding:52px 24px 100px;}
+    .breadcrumb{font-family:"Segoe UI",Arial,sans-serif;font-size:13px;color:var(--grijs-mid);margin-bottom:32px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+    .breadcrumb a{color:var(--blauw);text-decoration:none;}
+    .artikel-meta-top{font-family:"Segoe UI",Arial,sans-serif;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--rood);margin-bottom:16px;}
+    h1{font-size:clamp(24px,4vw,38px);font-weight:700;line-height:1.2;color:var(--ink);margin-bottom:22px;letter-spacing:-0.4px;}
+    .byline{font-family:"Segoe UI",Arial,sans-serif;font-size:14px;color:var(--grijs-mid);display:flex;align-items:center;gap:18px;margin-bottom:36px;padding-bottom:28px;border-bottom:1px solid #ddd;flex-wrap:wrap;}
+    .byline .auteur{font-weight:600;color:var(--tekst);}
+    .byline .tag{background:var(--blauw-zacht);color:var(--blauw);border-radius:3px;padding:2px 8px;font-weight:600;font-size:12px;}
+    .inleiding{font-size:19px;line-height:1.7;color:#333;border-left:4px solid var(--rood);padding-left:20px;margin-bottom:36px;font-style:italic;}
+    .artikel-tekst h2{font-size:22px;font-weight:700;color:var(--ink);margin:44px 0 16px;font-family:"Segoe UI",Arial,sans-serif;}
+    .artikel-tekst p{margin-bottom:22px;}
+    .artikel-tekst strong{font-weight:700;color:var(--ink);}
+    .pullquote{background:var(--ink);color:var(--wit);border-radius:4px;padding:30px 32px;margin:40px 0;font-size:19px;line-height:1.55;font-style:italic;text-align:center;position:relative;}
+    .pullquote::before{content:'\201C';font-size:80px;color:var(--geel);position:absolute;top:-10px;left:20px;line-height:1;font-style:normal;}
+    .pullquote p{margin:0;color:var(--wit);}
+    .feitenkader{background:var(--blauw-zacht);border:1px solid var(--blauw-licht);border-left:4px solid var(--blauw);border-radius:4px;padding:22px 24px;margin:36px 0;font-family:"Segoe UI",Arial,sans-serif;}
+    .feitenkader h3{font-size:14px;font-weight:700;color:var(--blauw);margin-bottom:12px;text-transform:uppercase;letter-spacing:1px;}
+    .feitenkader ul{list-style:none;padding:0;}
+    .feitenkader ul li{font-size:14px;color:#333;padding:5px 0;border-bottom:1px solid rgba(1,104,155,0.12);display:flex;justify-content:space-between;align-items:baseline;}
+    .feitenkader ul li:last-child{border-bottom:none;}
+    .feitenkader ul li strong{color:var(--blauw-donker);}
+    .cta-kader{background:var(--blauw);color:var(--wit);border-radius:4px;padding:28px 32px;margin:44px 0;text-align:center;}
+    .cta-kader h3{font-family:"Segoe UI",Arial,sans-serif;font-size:18px;font-weight:700;margin-bottom:10px;}
+    .cta-kader p{font-family:"Segoe UI",Arial,sans-serif;font-size:14px;color:rgba(255,255,255,0.8);margin-bottom:20px;margin-top:0;}
+    .cta-knop{display:inline-block;background:var(--geel);color:var(--ink);font-family:"Segoe UI",Arial,sans-serif;font-size:15px;font-weight:700;padding:12px 28px;border-radius:3px;text-decoration:none;}
+    .discussie-kader{background:#fff8e6;border:1px solid #f0d070;border-left:4px solid var(--geel);border-radius:4px;padding:22px 24px;margin:36px 0;font-family:"Segoe UI",Arial,sans-serif;}
+    .discussie-kader h3{font-size:14px;font-weight:700;color:#7a5c00;margin-bottom:12px;text-transform:uppercase;letter-spacing:1px;}
+    .discussie-kader p{font-size:14px;color:#555;margin:0;line-height:1.6;}
+    .artikel-disclaimer{background:var(--grijs);border:1px solid var(--grijs-rand);border-radius:4px;padding:16px 20px;font-family:"Segoe UI",Arial,sans-serif;font-size:13px;color:var(--grijs-mid);margin-top:56px;line-height:1.55;}
+    .artikel-disclaimer a{color:var(--blauw);}
+    .terug{display:inline-flex;align-items:center;gap:6px;font-family:"Segoe UI",Arial,sans-serif;color:var(--blauw);text-decoration:none;font-size:14px;font-weight:600;margin-bottom:40px;}
+    .terug:hover{text-decoration:underline;}
+    footer{background:var(--blauw-donker);color:rgba(255,255,255,0.7);text-align:center;padding:28px 24px;font-family:"Segoe UI",Arial,sans-serif;font-size:13px;}
+    footer a{color:rgba(255,255,255,0.85);text-decoration:underline;}
+  </style>
+</head>
+<body>
+<div class="topbalk"></div>
+<header>
+  <a class="logo-wrap" href="/"><div class="logo-schild">🏛️</div><div class="logo-tekst"><span class="logo-naam">Roofdag.nl</span><span class="logo-sub">Belastingcalculator 2025</span></div></a>
+  <nav><a href="/">Calculator</a><a href="/blog/">Blog & Opinie</a></nav>
+</header>
+<div class="artikel-wrap">
+  <div class="breadcrumb"><a href="/">Roofdag.nl</a><span>›</span><a href="/blog/">Blog & Opinie</a><span>›</span><span>Overheidsuitgaven aan oorlog</span></div>
+  <div class="artikel-meta-top">Opinie · Defensie & Beleid · April 2026</div>
+  <h1>Hoeveel betaal jij mee aan oorlog?</h1>
+  <div class="byline">
+    <span class="auteur">Roofdag Redactie</span><span>·</span><span>April 2026</span>
+    <span class="tag">Opinie</span><span class="tag">Defensie</span><span class="tag">Overheidsuitgaven</span>
+  </div>
+  <div class="inleiding">
+    Nederland verhoogt zijn defensiebudget naar 2% van het BBP — ruim 22 miljard euro per jaar. Daar bovenop gaat er via internationale fondsen miljarden naar militaire steun aan Oekraïne. De belastingbetaler betaalt mee. Maar hoeveel, en is hier een democratisch mandaat voor?
+  </div>
+  <div class="artikel-tekst">
+    <p>Defensie-uitgaven zijn misschien wel de meest onomstreden belastingbesteding die er bestaat — of toch niet? Nu de NAVO-norm van 2% BBP bindend lijkt te worden voor Nederland, en de steun aan Oekraïne doorloopt, stijgen de militaire uitgaven harder dan ooit in vredestijd. <strong>Wat betaalt de gemiddelde Nederlander daar precies aan mee?</strong></p>
+
+    <div class="feitenkader">
+      <h3>📊 Nederlandse militaire uitgaven — 2025/2026</h3>
+      <ul>
+        <li><span>Defensiebegroting 2025</span><strong>~€ 13 mrd</strong></li>
+        <li><span>Doelstelling 2% BBP (2026+)</span><strong>~€ 22 mrd/jaar</strong></li>
+        <li><span>Militaire steun Oekraïne (NL, cumulatief t/m 2025)</span><strong>~€ 6 mrd</strong></li>
+        <li><span>EU-defensiefondsen (bijdrage NL)</span><strong>~€ 1–2 mrd/jaar</strong></li>
+        <li><span>Kosten per huishouden defensieverhoging</span><strong>~€ 800/jaar extra</strong></li>
+      </ul>
+    </div>
+
+    <h2>Van 1% naar 2%: de grootste militaire opbouw in decennia</h2>
+    <p>Na jaren van bezuinigingen op defensie — ingegeven door het "vredesdividend" na de Koude Oorlog — maakt Nederland nu een scherpe draai. De NAVO-norm van 2% BBP, jarenlang genegeerd, wordt nu serieus nagestreefd. Dat betekent een verdubbeling van de defensie-uitgaven in minder dan tien jaar.</p>
+    <p>Dit geld gaat naar nieuwe fregatten, F-35's, munitievoorraden, personeelsuitbreiding en cyber-capaciteiten. Op zichzelf zijn dit investeringen met een duidelijke geopolitieke rationale. Maar het zijn ook <strong>miljarden euro's die niet naar zorg, onderwijs of lastenverlichting gaan</strong> — een afweging die zelden expliciet gemaakt wordt in het publieke debat.</p>
+
+    <h2>Oekraïne: hoeveel is genoeg?</h2>
+    <p>Naast de eigen defensiebegroting heeft Nederland sinds 2022 miljarden bijgedragen aan militaire steun aan Oekraïne. Dit gaat om wapensystemen, munitie, trainingen en financiële steun. Een deel hiervan wordt verantwoord in de rijksbegroting; een deel loopt via Europese fondsen en is minder zichtbaar.</p>
+    <p>De morele vraag — of je een land dat aangevallen wordt moet steunen — is een andere dan de fiscale vraag: <strong>hoeveel mag dit kosten, wie bepaalt dat, en wanneer is er genoeg bijgedragen?</strong> Het Nederlandse parlement heeft steeds ingestemd met steunpakketten, maar een publiek debat over een maximumbudget of exitstrategie heeft nauwelijks plaatsgevonden.</p>
+
+    <div class="pullquote">
+      <p>De belastingbetaler financiert een oorlog aan de andere kant van Europa — zonder dat er ooit een referendum of volksdebat over gevoerd is.</p>
+    </div>
+
+    <h2>Wat zegt de Grondwet?</h2>
+    <p>Nederland heeft een lange traditie van parlamentaire controle op oorlogsdeelname. De Artikel 100-procedure verplicht het kabinet de Kamer te informeren vóór militaire bijdragen. In de praktijk zijn deze procedures niet altijd afdoende: informatie komt laat, debatten zijn kort, en de druk van bondgenoten weegt zwaar mee. De burger staat aan de zijlijn.</p>
+
+    <h2>Twee kanten van het argument</h2>
+    <p>Voorstanders van hoge defensie-uitgaven wijzen op de verslechterde veiligheidssituatie in Europa, de dreiging van Rusland, en het risico van een zwak NAVO-bondgenootschap. Die argumenten verdienen serieuze aandacht. Tegelijkertijd zijn er critici — van links én rechts — die vragen stellen bij de transparantie van de besteding, de rol van de wapenindustrie in het lobbyproces, en de mogelijkheid dat hoge defensie-uitgaven de kans op diplomatieke oplossingen verkleinen.</p>
+    <p>Wat beide kanten gemeen hebben: de belastingbetaler zou beter geïnformeerd moeten worden over wat er met zijn geld gebeurt.</p>
+
+    <div class="discussie-kader">
+      <h3>💬 Stelling voor discussie</h3>
+      <p><strong>"Nederland zou een wettelijk vastgelegd maximumbudget moeten hebben voor militaire steun aan derde landen, ter goedkeuring via referendum."</strong><br><br>Eens of oneens? Stuur je reactie naar [email invullen] of gebruik #roofdag.</p>
+    </div>
+
+    <div class="cta-kader">
+      <h3>🗓️ Bereken jouw Roofdag</h3>
+      <p>Zie hoeveel dagen per jaar jij werkt voor de begroting — inclusief defensie.</p>
+      <a class="cta-knop" href="/">Naar de calculator →</a>
+    </div>
+  </div>
+  <div class="artikel-disclaimer">⚠️ Dit artikel is een opiniestuk. Genoemde bedragen zijn indicatief op basis van openbare begrotingsdata. Zie <a href="https://www.defensie.nl" target="_blank" rel="noopener">defensie.nl</a> en <a href="https://www.rijksfinancien.nl" target="_blank" rel="noopener">rijksfinancien.nl</a> voor officiële informatie.</div>
+  <br><br>
+  <a class="terug" href="/blog/">← Terug naar alle artikelen</a>
+</div>
+<footer><p>© 2026 Roofdag.nl — <a href="/">Terug naar de calculator</a> · Alle teksten zijn opinie en indicatief, geen fiscaal advies.</p></footer>
+</body>
+</html>

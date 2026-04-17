@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Waar gaat jouw belastinggeld naartoe? – Roofdag.nl</title>
+  <meta name="description" content="De rijksbegroting 2025 in perspectief: waar gaan de 400+ miljard euro belastingopbrengsten naartoe, en wat krijg jij er voor terug?">
+  <meta property="og:title" content="Waar gaat jouw belastinggeld naartoe?">
+  <meta property="og:type" content="article">
+  <style>
+    :root {
+      --blauw:#01689b;--blauw-donker:#154273;--blauw-licht:#cce4f0;--blauw-zacht:#e8f4f9;
+      --geel:#f9c231;--rood:#d52b1e;--grijs:#f5f5f5;--grijs-rand:#b4b4b4;--grijs-mid:#696969;
+      --tekst:#1a1a1a;--wit:#ffffff;--ink:#1a1a2e;
+    }
+    *{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:"Georgia","Times New Roman",serif;background:var(--grijs);color:var(--tekst);line-height:1.8;font-size:17px;}
+    .topbalk{background:var(--blauw-donker);height:6px;}
+    header{background:var(--wit);border-bottom:1px solid var(--grijs-rand);padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:72px;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,0.08);}
+    .logo-wrap{display:flex;align-items:center;gap:14px;text-decoration:none;}
+    .logo-schild{width:44px;height:44px;background:var(--blauw);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:22px;}
+    .logo-tekst{display:flex;flex-direction:column;line-height:1.2;}
+    .logo-naam{font-size:18px;font-weight:700;color:var(--blauw);font-family:"Segoe UI",Arial,sans-serif;}
+    .logo-sub{font-size:11px;color:var(--grijs-mid);font-family:"Segoe UI",Arial,sans-serif;}
+    nav{display:flex;align-items:center;gap:20px;font-family:"Segoe UI",Arial,sans-serif;font-size:14px;}
+    nav a{color:var(--blauw);text-decoration:none;font-weight:600;}
+    nav a:hover{text-decoration:underline;}
+    .artikel-wrap{max-width:740px;margin:0 auto;padding:52px 24px 100px;}
+    .breadcrumb{font-family:"Segoe UI",Arial,sans-serif;font-size:13px;color:var(--grijs-mid);margin-bottom:32px;display:flex;gap:8px;align-items:center;}
+    .breadcrumb a{color:var(--blauw);text-decoration:none;}
+    .breadcrumb a:hover{text-decoration:underline;}
+    .artikel-meta-top{font-family:"Segoe UI",Arial,sans-serif;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--blauw);margin-bottom:16px;}
+    h1{font-size:clamp(24px,4vw,38px);font-weight:700;line-height:1.2;color:var(--ink);margin-bottom:22px;letter-spacing:-0.4px;}
+    .byline{font-family:"Segoe UI",Arial,sans-serif;font-size:14px;color:var(--grijs-mid);display:flex;align-items:center;gap:18px;margin-bottom:36px;padding-bottom:28px;border-bottom:1px solid #ddd;flex-wrap:wrap;}
+    .byline .auteur{font-weight:600;color:var(--tekst);}
+    .byline .tag{background:var(--blauw-zacht);color:var(--blauw);border-radius:3px;padding:2px 8px;font-weight:600;font-size:12px;}
+    .inleiding{font-size:19px;line-height:1.7;color:#333;border-left:4px solid var(--blauw);padding-left:20px;margin-bottom:36px;font-style:italic;}
+    .artikel-tekst h2{font-size:22px;font-weight:700;color:var(--ink);margin:44px 0 16px;font-family:"Segoe UI",Arial,sans-serif;letter-spacing:-0.2px;}
+    .artikel-tekst p{margin-bottom:22px;}
+    .artikel-tekst strong{font-weight:700;color:var(--ink);}
+    .pullquote{background:var(--ink);color:var(--wit);border-radius:4px;padding:30px 32px;margin:40px 0;font-size:19px;line-height:1.55;font-style:italic;text-align:center;position:relative;}
+    .pullquote::before{content:'\201C';font-size:80px;color:var(--geel);position:absolute;top:-10px;left:20px;line-height:1;font-style:normal;}
+    .pullquote p{margin:0;color:var(--wit);}
+    .feitenkader{background:var(--blauw-zacht);border:1px solid var(--blauw-licht);border-left:4px solid var(--blauw);border-radius:4px;padding:22px 24px;margin:36px 0;font-family:"Segoe UI",Arial,sans-serif;}
+    .feitenkader h3{font-size:14px;font-weight:700;color:var(--blauw);margin-bottom:12px;text-transform:uppercase;letter-spacing:1px;}
+    .feitenkader ul{list-style:none;padding:0;}
+    .feitenkader ul li{font-size:14px;color:#333;padding:5px 0;border-bottom:1px solid rgba(1,104,155,0.12);display:flex;justify-content:space-between;align-items:baseline;}
+    .feitenkader ul li:last-child{border-bottom:none;}
+    .feitenkader ul li strong{color:var(--blauw-donker);}
+    .cta-kader{background:var(--blauw);color:var(--wit);border-radius:4px;padding:28px 32px;margin:44px 0;text-align:center;}
+    .cta-kader h3{font-family:"Segoe UI",Arial,sans-serif;font-size:18px;font-weight:700;margin-bottom:10px;}
+    .cta-kader p{font-family:"Segoe UI",Arial,sans-serif;font-size:14px;color:rgba(255,255,255,0.8);margin-bottom:20px;margin-top:0;}
+    .cta-knop{display:inline-block;background:var(--geel);color:var(--ink);font-family:"Segoe UI",Arial,sans-serif;font-size:15px;font-weight:700;padding:12px 28px;border-radius:3px;text-decoration:none;}
+    .cta-knop:hover{opacity:0.88;}
+    .artikel-disclaimer{background:var(--grijs);border:1px solid var(--grijs-rand);border-radius:4px;padding:16px 20px;font-family:"Segoe UI",Arial,sans-serif;font-size:13px;color:var(--grijs-mid);margin-top:56px;line-height:1.55;}
+    .artikel-disclaimer a{color:var(--blauw);}
+    .terug{display:inline-flex;align-items:center;gap:6px;font-family:"Segoe UI",Arial,sans-serif;color:var(--blauw);text-decoration:none;font-size:14px;font-weight:600;margin-bottom:40px;}
+    .terug:hover{text-decoration:underline;}
+    footer{background:var(--blauw-donker);color:rgba(255,255,255,0.7);text-align:center;padding:28px 24px;font-family:"Segoe UI",Arial,sans-serif;font-size:13px;}
+    footer a{color:rgba(255,255,255,0.85);text-decoration:underline;}
+  </style>
+</head>
+<body>
+<div class="topbalk"></div>
+<header>
+  <a class="logo-wrap" href="/"><div class="logo-schild">🏛️</div><div class="logo-tekst"><span class="logo-naam">Roofdag.nl</span><span class="logo-sub">Belastingcalculator 2025</span></div></a>
+  <nav><a href="/">Calculator</a><a href="/blog/">Blog & Opinie</a></nav>
+</header>
+<div class="artikel-wrap">
+  <div class="breadcrumb"><a href="/">Roofdag.nl</a><span>›</span><a href="/blog/">Blog & Opinie</a><span>›</span><span>Overheidsuitgaven</span></div>
+  <div class="artikel-meta-top">Analyse · Overheidsuitgaven · April 2026</div>
+  <h1>Waar gaat jouw belastinggeld naartoe? De rijksbegroting ontleed</h1>
+  <div class="byline">
+    <span class="auteur">Roofdag Redactie</span><span>·</span><span>April 2026</span>
+    <span class="tag">Analyse</span><span class="tag">Overheidsuitgaven</span>
+  </div>
+  <div class="inleiding">
+    De Nederlandse overheid geeft jaarlijks meer dan 400 miljard euro uit. Dat is ruim 23.000 euro per Nederlander. Maar waar gaat dat geld precies naartoe — en is elke euro goed besteed?
+  </div>
+  <div class="artikel-tekst">
+    <p>Ieder jaar presenteert het kabinet op Prinsjesdag de Rijksbegroting: een boekwerk van duizenden pagina's dat bepaalt waar de belastingopbrengsten naartoe gaan. De meeste Nederlanders zien die begroting nooit. Ze betalen wel mee — tot soms meer dan de helft van hun inkomen — maar wat er aan de andere kant van de schatkist mee gebeurt, blijft vaag.</p>
+    <p>Dat is geen toeval. Een overheidsbudget van deze omvang is complex, versnipperd over tientallen ministeries en fondsen, en bewust niet eenvoudig te doorgronden. Roofdag.nl zet de grootste posten op een rij.</p>
+
+    <div class="feitenkader">
+      <h3>📊 Rijksbegroting 2025 — grootste uitgavenposten</h3>
+      <ul>
+        <li><span>Sociale zekerheid (AOW, bijstand, WW, WAO)</span><strong>~€ 110 mrd</strong></li>
+        <li><span>Zorg (Rijksbijdrage Zorgverzekeringswet + WLZ)</span><strong>~€ 80 mrd</strong></li>
+        <li><span>Onderwijs</span><strong>~€ 47 mrd</strong></li>
+        <li><span>Gemeentefonds + Provinciefonds</span><strong>~€ 40 mrd</strong></li>
+        <li><span>Defensie</span><strong>~€ 13 mrd</strong></li>
+        <li><span>Rentelasten staatsschuld</span><strong>~€ 10 mrd</strong></li>
+        <li><span>Asiel, migratie & integratie</span><strong>~€ 7 mrd</strong></li>
+        <li><span>Overig (klimaat, infra, buitenlands beleid)</span><strong>~€ 100+ mrd</strong></li>
+      </ul>
+    </div>
+
+    <h2>De grootste post: sociale zekerheid</h2>
+    <p>Meer dan een kwart van het rijksbudget gaat naar sociale zekerheid. De AOW alleen al kost jaarlijks circa 55 miljard euro — een bedrag dat door de vergrijzing elk jaar verder stijgt. Wie vandaag 35 jaar is en belasting betaalt, financiert de pensioenen van de huidige generatie 65-plussers. Of hij zelf ooit een vergelijkbaar pensioen ontvangt, is onzeker: het stelsel staat onder druk.</p>
+    <p>Daarnaast zijn er miljarden voor de bijstand, de WW en arbeidsongeschiktheidsuitkeringen. Op zich zijn dit voorzieningen waarvoor een draagvlak bestaat. Maar de vraag die zelden gesteld wordt: <strong>hoe efficiënt worden deze middelen ingezet?</strong> De uitvoeringskosten van het UWV alleen al bedragen jaarlijks ruim 2 miljard euro.</p>
+
+    <h2>Zorg: de zweep op de begroting</h2>
+    <p>Zorgkosten groeien sneller dan de economie. Nederland geeft procentueel meer uit aan zorg dan vrijwel elk ander land ter wereld. Tegelijkertijd stijgen de eigen bijdragen en het eigen risico, en krimpt het zorgaanbod op het platteland. De belastingbetaler betaalt meer en krijgt — in sommige gevallen — minder terug.</p>
+    <p>Een groot deel van de zorgkosten is bovendien nauwelijks te beïnvloeden via de politiek: ze zijn juridisch vastgelegd in aanspraken. Dat maakt bezuinigen moeilijk en de groei van de post bijna automatisch.</p>
+
+    <div class="pullquote">
+      <p>De belastingbetaler financiert een systeem waarvan de kosten automatisch groeien — zonder dat hij inspraak heeft over de prioriteiten.</p>
+    </div>
+
+    <h2>Onderwijs: veel geld, wisselende resultaten</h2>
+    <p>Nederland geeft per leerling relatief veel uit aan onderwijs. Toch dalen de PISA-scores al jaren. Het lerarentekort groeit. En een toenemend deel van het onderwijsbudget verdwijnt in overhead, bestuurders en administratie. De vraag is gerechtvaardigd: <strong>bereikt het geld de klas?</strong></p>
+
+    <h2>Rentelasten: betalen voor de rekeningen van vroeger</h2>
+    <p>Een onderschat begrotingspost zijn de rentelasten op de staatsschuld. Nederland heeft een schuld van ruim 500 miljard euro. Nu de rente weer gestegen is naar normaal historische niveaus, kost dat jaarlijks miljarden. Dit zijn geen nieuwe diensten voor burgers — het zijn betalingen voor uitgaven die decennia geleden gedaan zijn, en die de huidige generatie belastingbetalers afrekent.</p>
+
+    <h2>Conclusie: transparantie als eerste stap</h2>
+    <p>De Nederlandse overheid geeft enorm veel geld uit. Niet per se slecht — een groot deel gaat naar voorzieningen die breed gewaardeerd worden. Maar de schaal en complexiteit van de begroting maakt democratische controle moeilijk. En wie belasting betaalt, heeft recht op inzicht in wat er met dat geld gebeurt.</p>
+    <p><strong>Roofdag.nl is gebouwd op precies dat principe:</strong> transparantie over wat de fiscaliteit je kost, als eerste stap naar een zinvol debat over wat het mag kosten.</p>
+
+    <div class="cta-kader">
+      <h3>🗓️ Bereken jouw Roofdag</h3>
+      <p>Ontdek op welke dag jij klaar bent met werken voor de overheid.</p>
+      <a class="cta-knop" href="/">Naar de calculator →</a>
+    </div>
+  </div>
+  <div class="artikel-disclaimer">⚠️ Dit artikel is een analyse op basis van openbare begrotingsdata. Bedragen zijn afgerond en indicatief. Zie <a href="https://www.rijksfinancien.nl" target="_blank" rel="noopener">rijksfinancien.nl</a> voor de officiële begroting.</div>
+  <br><br>
+  <a class="terug" href="/blog/">← Terug naar alle artikelen</a>
+</div>
+<footer><p>© 2026 Roofdag.nl — <a href="/">Terug naar de calculator</a> · Alle teksten zijn opinie en indicatief, geen fiscaal advies.</p></footer>
+</body>
+</html>

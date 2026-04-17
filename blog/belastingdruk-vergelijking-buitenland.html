@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nederland vs. de rest: hoe scoort onze belastingdruk internationaal? – Roofdag.nl</title>
+  <meta name="description" content="Betalen Nederlanders meer belasting dan Duitsers, Denen of Zwitsers? Een internationale vergelijking van belastingdruk, roofdag-equivalent en wat je ervoor terugkrijgt.">
+  <meta property="og:title" content="Nederland vs. de rest: hoe scoort onze belastingdruk internationaal?">
+  <meta property="og:type" content="article">
+  <style>
+    :root{--blauw:#01689b;--blauw-donker:#154273;--blauw-licht:#cce4f0;--blauw-zacht:#e8f4f9;--geel:#f9c231;--rood:#d52b1e;--grijs:#f5f5f5;--grijs-rand:#b4b4b4;--grijs-mid:#696969;--tekst:#1a1a1a;--wit:#ffffff;--ink:#1a1a2e;}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{font-family:"Georgia","Times New Roman",serif;background:var(--grijs);color:var(--tekst);line-height:1.8;font-size:17px;}
+    .topbalk{background:var(--blauw-donker);height:6px;}
+    header{background:var(--wit);border-bottom:1px solid var(--grijs-rand);padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:72px;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,0.08);}
+    .logo-wrap{display:flex;align-items:center;gap:14px;text-decoration:none;}
+    .logo-schild{width:44px;height:44px;background:var(--blauw);border-radius:4px;display:flex;align-items:center;justify-content:center;font-size:22px;}
+    .logo-tekst{display:flex;flex-direction:column;line-height:1.2;}
+    .logo-naam{font-size:18px;font-weight:700;color:var(--blauw);font-family:"Segoe UI",Arial,sans-serif;}
+    .logo-sub{font-size:11px;color:var(--grijs-mid);font-family:"Segoe UI",Arial,sans-serif;}
+    nav{display:flex;align-items:center;gap:20px;font-family:"Segoe UI",Arial,sans-serif;font-size:14px;}
+    nav a{color:var(--blauw);text-decoration:none;font-weight:600;}
+    nav a:hover{text-decoration:underline;}
+    .artikel-wrap{max-width:740px;margin:0 auto;padding:52px 24px 100px;}
+    .breadcrumb{font-family:"Segoe UI",Arial,sans-serif;font-size:13px;color:var(--grijs-mid);margin-bottom:32px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+    .breadcrumb a{color:var(--blauw);text-decoration:none;}
+    .artikel-meta-top{font-family:"Segoe UI",Arial,sans-serif;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--blauw);margin-bottom:16px;}
+    h1{font-size:clamp(24px,4vw,38px);font-weight:700;line-height:1.2;color:var(--ink);margin-bottom:22px;letter-spacing:-0.4px;}
+    .byline{font-family:"Segoe UI",Arial,sans-serif;font-size:14px;color:var(--grijs-mid);display:flex;align-items:center;gap:18px;margin-bottom:36px;padding-bottom:28px;border-bottom:1px solid #ddd;flex-wrap:wrap;}
+    .byline .auteur{font-weight:600;color:var(--tekst);}
+    .byline .tag{background:var(--blauw-zacht);color:var(--blauw);border-radius:3px;padding:2px 8px;font-weight:600;font-size:12px;}
+    .inleiding{font-size:19px;line-height:1.7;color:#333;border-left:4px solid var(--blauw);padding-left:20px;margin-bottom:36px;font-style:italic;}
+    .artikel-tekst h2{font-size:22px;font-weight:700;color:var(--ink);margin:44px 0 16px;font-family:"Segoe UI",Arial,sans-serif;}
+    .artikel-tekst p{margin-bottom:22px;}
+    .artikel-tekst strong{font-weight:700;color:var(--ink);}
+    .pullquote{background:var(--ink);color:var(--wit);border-radius:4px;padding:30px 32px;margin:40px 0;font-size:19px;line-height:1.55;font-style:italic;text-align:center;position:relative;}
+    .pullquote::before{content:'\201C';font-size:80px;color:var(--geel);position:absolute;top:-10px;left:20px;line-height:1;font-style:normal;}
+    .pullquote p{margin:0;color:var(--wit);}
+    /* VERGELIJKINGSTABEL */
+    .vergelijk-tabel{width:100%;border-collapse:collapse;margin:36px 0;font-family:"Segoe UI",Arial,sans-serif;font-size:14px;}
+    .vergelijk-tabel thead th{background:var(--blauw-donker);color:var(--wit);padding:10px 14px;text-align:left;font-weight:700;}
+    .vergelijk-tabel tbody tr:nth-child(even){background:var(--blauw-zacht);}
+    .vergelijk-tabel tbody tr:nth-child(odd){background:var(--wit);}
+    .vergelijk-tabel tbody tr.hl{background:#fff0cc;font-weight:700;}
+    .vergelijk-tabel td{padding:9px 14px;border-bottom:1px solid #ddd;}
+    .vergelijk-tabel td:not(:first-child){text-align:right;}
+    .cta-kader{background:var(--blauw);color:var(--wit);border-radius:4px;padding:28px 32px;margin:44px 0;text-align:center;}
+    .cta-kader h3{font-family:"Segoe UI",Arial,sans-serif;font-size:18px;font-weight:700;margin-bottom:10px;}
+    .cta-kader p{font-family:"Segoe UI",Arial,sans-serif;font-size:14px;color:rgba(255,255,255,0.8);margin-bottom:20px;margin-top:0;}
+    .cta-knop{display:inline-block;background:var(--geel);color:var(--ink);font-family:"Segoe UI",Arial,sans-serif;font-size:15px;font-weight:700;padding:12px 28px;border-radius:3px;text-decoration:none;}
+    .artikel-disclaimer{background:var(--grijs);border:1px solid var(--grijs-rand);border-radius:4px;padding:16px 20px;font-family:"Segoe UI",Arial,sans-serif;font-size:13px;color:var(--grijs-mid);margin-top:56px;line-height:1.55;}
+    .artikel-disclaimer a{color:var(--blauw);}
+    .terug{display:inline-flex;align-items:center;gap:6px;font-family:"Segoe UI",Arial,sans-serif;color:var(--blauw);text-decoration:none;font-size:14px;font-weight:600;margin-bottom:40px;}
+    .terug:hover{text-decoration:underline;}
+    footer{background:var(--blauw-donker);color:rgba(255,255,255,0.7);text-align:center;padding:28px 24px;font-family:"Segoe UI",Arial,sans-serif;font-size:13px;}
+    footer a{color:rgba(255,255,255,0.85);text-decoration:underline;}
+    @media(max-width:600px){.vergelijk-tabel{font-size:12px;}.vergelijk-tabel td,.vergelijk-tabel th{padding:7px 8px;}}
+  </style>
+</head>
+<body>
+<div class="topbalk"></div>
+<header>
+  <a class="logo-wrap" href="/"><div class="logo-schild">🏛️</div><div class="logo-tekst"><span class="logo-naam">Roofdag.nl</span><span class="logo-sub">Belastingcalculator 2025</span></div></a>
+  <nav><a href="/">Calculator</a><a href="/blog/">Blog & Opinie</a></nav>
+</header>
+<div class="artikel-wrap">
+  <div class="breadcrumb"><a href="/">Roofdag.nl</a><span>›</span><a href="/blog/">Blog & Opinie</a><span>›</span><span>Vergelijking buitenland</span></div>
+  <div class="artikel-meta-top">Analyse · Vergelijking · April 2026</div>
+  <h1>Nederland vs. de rest: hoe scoort onze belastingdruk internationaal?</h1>
+  <div class="byline">
+    <span class="auteur">Roofdag Redactie</span><span>·</span><span>April 2026</span>
+    <span class="tag">Analyse</span><span class="tag">Internationaal</span>
+  </div>
+  <div class="inleiding">
+    Nederlanders betalen veel belasting — maar zijn ze daarin uniek? Een vergelijking met Duitsland, België, Denemarken, Zwitserland en de VS laat zien waar Nederland staat, en wat het verschil maakt.
+  </div>
+  <div class="artikel-tekst">
+    <p>Belastingdruk is relatief. Wie alleen naar zijn eigen loonstrook kijkt, mist de context. Pas als je weet wat anderen betalen — en wat ze daarvoor terugkrijgen — kun je een oordeel vormen over of de Nederlandse fiscaliteit hoog, laag of gemiddeld is. De uitkomst is verrassend genuanceerd.</p>
+
+    <h2>De internationale vergelijking</h2>
+    <p>Onderstaande tabel geeft een indicatief beeld van de belastingdruk in een aantal westerse landen, uitgedrukt als percentage van het BBP en als equivalent van de "Roofdag" — de dag waarop de gemiddelde belastingbetaler klaar is met werken voor de overheid.</p>
+
+    <table class="vergelijk-tabel">
+      <thead>
+        <tr><th>Land</th><th>Belastingdruk % BBP</th><th>Roofdag-equivalent</th><th>Max. marginaal tarief IB</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>🇩🇰 Denemarken</td><td>46%</td><td>~17 juni</td><td>55%</td></tr>
+        <tr><td>🇫🇷 Frankrijk</td><td>45%</td><td>~13 juni</td><td>49%</td></tr>
+        <tr><td>🇧🇪 België</td><td>44%</td><td>~9 juni</td><td>50%</td></tr>
+        <tr class="hl"><td>🇳🇱 Nederland</td><td>43%</td><td>~5 juni</td><td>49,5%</td></tr>
+        <tr><td>🇩🇪 Duitsland</td><td>39%</td><td>~23 mei</td><td>45%</td></tr>
+        <tr><td>🇬🇧 Verenigd Koninkrijk</td><td>33%</td><td>~1 mei</td><td>45%</td></tr>
+        <tr><td>🇺🇸 Verenigde Staten</td><td>27%</td><td>~9 april</td><td>37% (federaal)</td></tr>
+        <tr><td>🇨🇭 Zwitserland</td><td>28%</td><td>~12 april</td><td>~36% (incl. kantonal)</td></tr>
+      </tbody>
+    </table>
+
+    <p><em>Bronnen: OESO Tax Revenue Statistics 2024, eigen berekeningen. Roofdag-equivalenten zijn indicatief voor een modaal inkomen.</em></p>
+
+    <h2>Nederland: hoog maar niet hoogste</h2>
+    <p>Nederland scoort in de hogere helft van de OESO-landen, maar is niet het duurste land ter wereld. Denemarken, Frankrijk en België liggen iets hoger. Het grote verschil zit in de structuur: Nederlandse belasting wordt relatief zwaar geheven op arbeid en inkomen, terwijl landen als Zwitserland dezelfde inkomsten binnenhalen via lagere inkomstenbelasting maar hogere vermogensbelastingen en lokale heffingen.</p>
+
+    <div class="pullquote">
+      <p>Een Deen betaalt meer belasting dan een Nederlander — maar weet precies waarvoor, en ervaart er meer van in publieke diensten. In Nederland is die relatie minder transparant.</p>
+    </div>
+
+    <h2>Wat krijg je terug? De kwaliteitsvraag</h2>
+    <p>Belastingdruk zegt pas iets als je het afzet tegen wat je ervoor terugkrijgt. Denemarken scoort hoog op belastingen én op tevredenheid met overheidsdiensten: zorg, onderwijs en sociale zekerheid worden als kwalitatief goed ervaren. Nederland scoort redelijk, maar kent toenemende wachttijden in de zorg, een woningtekort dat deels door overheidsbeleid verergerd is, en een pensioenstelsel in transitie.</p>
+    <p>Zwitserland toont een ander model: lagere belastingdruk, maar meer eigen verantwoordelijkheid voor zorgverzekering en pensioen. De staat doet minder, maar de burger betaalt ook minder gedwongen af. Het is een bewuste maatschappelijke keuze — iets wat in Nederland zelden expliciet zo geframed wordt.</p>
+
+    <h2>De VS: vrijheid met een prijs</h2>
+    <p>Amerikanen betalen beduidend minder federale belasting, maar de vergelijking is misleidend. Zorgverzekering, pensioenopbouw en onderwijs komen grotendeels privaat — en zijn daardoor voor velen duurder dan de equivalente Nederlandse belastingafdracht. De lage belastingdruk betekent niet per se meer netto vrijheid; het betekent andere keuzes over wie wat betaalt.</p>
+
+    <h2>Wat kunnen we leren?</h2>
+    <p>De internationale vergelijking leert drie dingen. Ten eerste: Nederland is niet exceptioneel hoog, maar zit wel in de top van Europa. Ten tweede: de hoogte van de belasting zegt weinig zonder te kijken naar de kwaliteit van de tegenprestatie. Ten derde — en dat is de kern van Roofdag.nl — <strong>de belastingbetaler verdient transparantie over beide kanten van de balans.</strong></p>
+
+    <div class="cta-kader">
+      <h3>🗓️ Bereken jouw eigen Roofdag</h3>
+      <p>Hoe laat in het jaar begin jij voor jezelf te werken — in vergelijking met je Europese buren?</p>
+      <a class="cta-knop" href="/">Naar de calculator →</a>
+    </div>
+  </div>
+  <div class="artikel-disclaimer">⚠️ Dit artikel is een analyse op basis van OESO-data en eigen berekeningen. Belastingdruk-vergelijkingen zijn indicatief en afhankelijk van inkomensniveau, gezinssituatie en definities. Zie <a href="https://stats.oecd.org" target="_blank" rel="noopener">stats.oecd.org</a> voor brondata.</div>
+  <br><br>
+  <a class="terug" href="/blog/">← Terug naar alle artikelen</a>
+</div>
+<footer><p>© 2026 Roofdag.nl — <a href="/">Terug naar de calculator</a> · Alle teksten zijn opinie en indicatief, geen fiscaal advies.</p></footer>
+</body>
+</html>
