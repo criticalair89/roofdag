@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Belastingdruk: democratische bijdrage of georganiseerde diefstal? – Roofdag.nl</title>
-  <meta name="description" content="Wanneer overschrijdt een belasting de grens van het moreel acceptabele? Een analyse van de grenzen van fiscale legitimiteit in Nederland.">
-  <meta property="og:title" content="Belastingdruk: democratische bijdrage of georganiseerde diefstal?">
-  <meta property="og:description" content="De overheid neemt voor de gemiddelde Nederlander meer dan de helft van zijn economische productie af. Wanneer houdt een heffing op een bijdrage te zijn?">
-  <meta property="og:type" content="article">
+  <title>Blog & Opinie – Roofdag.nl</title>
+  <meta name="description" content="Opiniestukken en analyses over belastingdruk, overheidsuitgaven en de vrijheid van de Nederlandse belastingbetaler.">
+  <meta property="og:title" content="Blog & Opinie – Roofdag.nl">
+  <meta property="og:description" content="Opiniestukken en analyses over belastingdruk, overheidsuitgaven en de vrijheid van de Nederlandse belastingbetaler.">
+  <meta property="og:type" content="website">
   <style>
     :root {
       --blauw:        #01689b;
@@ -19,7 +19,7 @@
       --grijs:        #f5f5f5;
       --grijs-rand:   #b4b4b4;
       --grijs-mid:    #696969;
-      --tekst:        #1a1a1a;
+      --tekst:        #111111;
       --wit:          #ffffff;
       --ink:          #1a1a2e;
     }
@@ -31,8 +31,8 @@
       font-family: "Georgia", "Times New Roman", serif;
       background: var(--grijs);
       color: var(--tekst);
-      line-height: 1.8;
-      font-size: 17px;
+      line-height: 1.7;
+      font-size: 16px;
     }
 
     /* ── TOPBALK ── */
@@ -68,176 +68,228 @@
     nav { display: flex; align-items: center; gap: 20px; font-family: "Segoe UI", Arial, sans-serif; font-size: 14px; }
     nav a { color: var(--blauw); text-decoration: none; font-weight: 600; }
     nav a:hover { text-decoration: underline; }
+    nav .nav-actief { color: var(--blauw-donker); border-bottom: 2px solid var(--geel); padding-bottom: 2px; }
 
-    /* ── ARTIKEL LAYOUT ── */
-    .artikel-wrap {
-      max-width: 740px; margin: 0 auto;
-      padding: 52px 24px 100px;
+    /* ── HERO ── */
+    .hero {
+      background: var(--ink);
+      color: var(--wit);
+      padding: 60px 24px 52px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
     }
-
-    /* BREADCRUMB */
-    .breadcrumb {
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: repeating-linear-gradient(
+        -45deg,
+        transparent,
+        transparent 60px,
+        rgba(255,255,255,0.015) 60px,
+        rgba(255,255,255,0.015) 61px
+      );
+    }
+    .hero-label {
+      display: inline-block;
       font-family: "Segoe UI", Arial, sans-serif;
-      font-size: 13px; color: var(--grijs-mid);
-      margin-bottom: 32px;
-      display: flex; gap: 8px; align-items: center;
+      font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--geel); margin-bottom: 20px;
     }
-    .breadcrumb a { color: var(--blauw); text-decoration: none; }
-    .breadcrumb a:hover { text-decoration: underline; }
-
-    /* META boven titel */
-    .artikel-meta-top {
+    .hero h1 {
+      font-size: clamp(28px, 4.5vw, 48px);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 18px;
+      letter-spacing: -0.5px;
+    }
+    .hero p {
+      max-width: 600px; margin: 0 auto;
+      font-size: 17px; color: rgba(255,255,255,0.75);
       font-family: "Segoe UI", Arial, sans-serif;
-      font-size: 12px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
-      color: var(--rood); margin-bottom: 16px;
+      line-height: 1.6;
     }
 
-    /* TITEL */
-    h1 {
-      font-size: clamp(24px, 4vw, 38px);
+    /* ── HOOFD ── */
+    .hoofd {
+      max-width: 1060px; margin: 0 auto;
+      padding: 48px 20px 100px;
+    }
+
+    /* ── UITGELICHT (featured) ── */
+    .featured {
+      background: var(--wit);
+      border: 1px solid var(--grijs-rand);
+      border-radius: 4px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 0;
+      margin-bottom: 48px;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      transition: box-shadow 0.2s;
+    }
+    .featured:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.12); }
+
+    .featured-tekst { padding: 36px 36px 32px; }
+    .featured-label {
+      display: inline-block;
+      font-family: "Segoe UI", Arial, sans-serif;
+      font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+      color: var(--rood); margin-bottom: 12px;
+    }
+    .featured-titel {
+      font-size: clamp(20px, 3vw, 28px);
       font-weight: 700; line-height: 1.2;
-      color: var(--ink); margin-bottom: 22px;
-      letter-spacing: -0.4px;
+      margin-bottom: 14px; color: var(--ink);
     }
-
-    /* BYLINE */
-    .byline {
+    .featured-intro {
+      font-size: 15px; color: #444;
+      line-height: 1.7; margin-bottom: 22px;
+    }
+    .featured-meta {
       font-family: "Segoe UI", Arial, sans-serif;
-      font-size: 14px; color: var(--grijs-mid);
-      display: flex; align-items: center; gap: 18px;
-      margin-bottom: 36px;
-      padding-bottom: 28px;
-      border-bottom: 1px solid #ddd;
+      font-size: 12px; color: var(--grijs-mid);
+      display: flex; align-items: center; gap: 16px;
     }
-    .byline .auteur { font-weight: 600; color: var(--tekst); }
-    .byline .tag {
+    .featured-meta .tag {
       background: var(--blauw-zacht); color: var(--blauw);
-      border-radius: 3px; padding: 2px 8px; font-weight: 600; font-size: 12px;
+      border-radius: 3px; padding: 2px 8px; font-weight: 600;
     }
 
-    /* INLEIDING */
-    .inleiding {
-      font-size: 19px; line-height: 1.7;
-      color: #333;
-      border-left: 4px solid var(--blauw);
-      padding-left: 20px;
-      margin-bottom: 36px;
-      font-style: italic;
+    .featured-visual {
+      background: var(--blauw-donker);
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 8px;
+      color: var(--wit); text-align: center; padding: 32px;
+    }
+    .featured-visual .getal {
+      font-size: 64px; font-weight: 700; line-height: 1;
+      color: var(--geel); font-family: "Segoe UI", Arial, sans-serif;
+    }
+    .featured-visual .getal-sub {
+      font-size: 13px; color: rgba(255,255,255,0.65);
+      font-family: "Segoe UI", Arial, sans-serif;
+      letter-spacing: 0.5px;
     }
 
-    /* TEKST */
-    .artikel-tekst h2 {
-      font-size: 22px; font-weight: 700;
-      color: var(--ink); margin: 44px 0 16px;
+    @media (max-width: 720px) {
+      .featured { grid-template-columns: 1fr; }
+      .featured-visual { padding: 28px; min-height: 140px; }
+      .featured-visual .getal { font-size: 48px; }
+    }
+
+    /* ── SECTIE HEADER ── */
+    .sectie-header {
+      display: flex; align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 24px;
+      border-bottom: 3px solid var(--blauw);
+      padding-bottom: 10px;
+    }
+    .sectie-header h2 {
+      font-size: 20px; font-weight: 700;
+      color: var(--blauw-donker);
       font-family: "Segoe UI", Arial, sans-serif;
       letter-spacing: -0.2px;
     }
-
-    .artikel-tekst p {
-      margin-bottom: 22px;
-    }
-
-    .artikel-tekst strong {
-      font-weight: 700; color: var(--ink);
-    }
-
-    /* PULLQUOTE */
-    .pullquote {
-      background: var(--ink); color: var(--wit);
-      border-radius: 4px; padding: 30px 32px;
-      margin: 40px 0; font-size: 19px; line-height: 1.55;
-      font-style: italic; text-align: center;
-      position: relative;
-    }
-    .pullquote::before {
-      content: '\201C';
-      font-size: 80px; color: var(--geel);
-      position: absolute; top: -10px; left: 20px;
-      line-height: 1; font-style: normal;
-    }
-    .pullquote p { margin: 0; color: var(--wit); }
-
-    /* FEITENKADER */
-    .feitenkader {
-      background: var(--blauw-zacht);
-      border: 1px solid var(--blauw-licht);
-      border-left: 4px solid var(--blauw);
-      border-radius: 4px; padding: 22px 24px;
-      margin: 36px 0;
-      font-family: "Segoe UI", Arial, sans-serif;
-    }
-    .feitenkader h3 {
-      font-size: 14px; font-weight: 700; color: var(--blauw);
-      margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;
-    }
-    .feitenkader ul { list-style: none; padding: 0; }
-    .feitenkader ul li {
-      font-size: 14px; color: #333; padding: 5px 0;
-      border-bottom: 1px solid rgba(1,104,155,0.12);
-      display: flex; justify-content: space-between; align-items: baseline;
-    }
-    .feitenkader ul li:last-child { border-bottom: none; }
-    .feitenkader ul li strong { color: var(--blauw-donker); }
-
-    /* CALCULATOR CTA */
-    .cta-kader {
-      background: var(--blauw); color: var(--wit);
-      border-radius: 4px; padding: 28px 32px;
-      margin: 44px 0; text-align: center;
-    }
-    .cta-kader h3 {
-      font-family: "Segoe UI", Arial, sans-serif;
-      font-size: 18px; font-weight: 700; margin-bottom: 10px;
-    }
-    .cta-kader p {
-      font-family: "Segoe UI", Arial, sans-serif;
-      font-size: 14px; color: rgba(255,255,255,0.8);
-      margin-bottom: 20px; margin-top: 0;
-    }
-    .cta-knop {
-      display: inline-block;
-      background: var(--geel); color: var(--ink);
-      font-family: "Segoe UI", Arial, sans-serif;
-      font-size: 15px; font-weight: 700;
-      padding: 12px 28px; border-radius: 3px;
-      text-decoration: none;
-      transition: opacity 0.15s;
-    }
-    .cta-knop:hover { opacity: 0.88; }
-
-    /* DISCUSSIE KADER */
-    .discussie-kader {
-      background: #fff8e6;
-      border: 1px solid #f0d070;
-      border-left: 4px solid var(--geel);
-      border-radius: 4px; padding: 22px 24px;
-      margin: 36px 0;
-      font-family: "Segoe UI", Arial, sans-serif;
-    }
-    .discussie-kader h3 {
-      font-size: 14px; font-weight: 700; color: #7a5c00;
-      margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px;
-    }
-    .discussie-kader p { font-size: 14px; color: #555; margin: 0; line-height: 1.6; }
-
-    /* DISCLAIMER */
-    .artikel-disclaimer {
-      background: var(--grijs); border: 1px solid var(--grijs-rand);
-      border-radius: 4px; padding: 16px 20px;
-      font-family: "Segoe UI", Arial, sans-serif;
+    .sectie-header span {
       font-size: 13px; color: var(--grijs-mid);
-      margin-top: 56px; line-height: 1.55;
+      font-family: "Segoe UI", Arial, sans-serif;
     }
 
-    /* TERUG LINK */
-    .terug {
-      display: inline-flex; align-items: center; gap: 6px;
-      font-family: "Segoe UI", Arial, sans-serif;
-      color: var(--blauw); text-decoration: none;
-      font-size: 14px; font-weight: 600;
-      margin-bottom: 40px;
+    /* ── ARTIKEL GRID ── */
+    .artikelen-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+      margin-bottom: 60px;
     }
-    .terug:hover { text-decoration: underline; }
+
+    .artikel-kaart {
+      background: var(--wit);
+      border: 1px solid var(--grijs-rand);
+      border-radius: 4px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+      display: flex; flex-direction: column;
+      text-decoration: none; color: inherit;
+      transition: box-shadow 0.18s, transform 0.18s;
+      overflow: hidden;
+    }
+    .artikel-kaart:hover {
+      box-shadow: 0 6px 20px rgba(0,0,0,0.10);
+      transform: translateY(-2px);
+    }
+
+    .kaart-kleur {
+      height: 5px;
+    }
+    .kleur-rood  { background: var(--rood); }
+    .kleur-blauw { background: var(--blauw); }
+    .kleur-geel  { background: var(--geel); }
+
+    .kaart-body { padding: 22px 22px 18px; flex: 1; display: flex; flex-direction: column; }
+
+    .kaart-categorie {
+      font-family: "Segoe UI", Arial, sans-serif;
+      font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+      color: var(--grijs-mid); margin-bottom: 10px;
+    }
+
+    .kaart-titel {
+      font-size: 17px; font-weight: 700; line-height: 1.3;
+      color: var(--ink); margin-bottom: 10px;
+    }
+
+    .kaart-intro {
+      font-size: 14px; color: #555; line-height: 1.65;
+      flex: 1; margin-bottom: 18px;
+    }
+
+    .kaart-footer {
+      font-family: "Segoe UI", Arial, sans-serif;
+      font-size: 12px; color: var(--grijs-mid);
+      border-top: 1px solid #eee; padding-top: 12px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .kaart-footer .lees-meer {
+      color: var(--blauw); font-weight: 600; font-size: 12px;
+    }
+
+    /* ── THEMA BLOK ── */
+    .thema-blok {
+      background: var(--wit);
+      border: 1px solid var(--grijs-rand);
+      border-radius: 4px;
+      padding: 28px 32px;
+      margin-bottom: 48px;
+    }
+    .thema-blok h3 {
+      font-size: 15px; font-weight: 700; color: var(--blauw-donker);
+      font-family: "Segoe UI", Arial, sans-serif;
+      margin-bottom: 16px;
+    }
+    .thema-tags { display: flex; flex-wrap: wrap; gap: 10px; }
+    .thema-tag {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: var(--blauw-zacht); color: var(--blauw);
+      border: 1px solid var(--blauw-licht); border-radius: 3px;
+      padding: 5px 14px; font-size: 13px; font-weight: 600;
+      text-decoration: none;
+      transition: background 0.15s;
+    }
+    .thema-tag:hover { background: var(--blauw-licht); }
+
+    /* ── DISCLAIMER ── */
+    .disclaimer {
+      background: #fffbea; border: 1px solid #f0d070;
+      border-radius: 4px; padding: 14px 20px;
+      font-family: "Segoe UI", Arial, sans-serif;
+      font-size: 13px; color: #6b5c00;
+      margin-bottom: 48px; line-height: 1.5;
+    }
 
     /* ── FOOTER ── */
     footer {
@@ -246,11 +298,6 @@
       font-family: "Segoe UI", Arial, sans-serif; font-size: 13px;
     }
     footer a { color: rgba(255,255,255,0.85); text-decoration: underline; }
-
-    @media (max-width: 600px) {
-      .artikel-wrap { padding: 32px 16px 80px; }
-      .byline { flex-wrap: wrap; gap: 10px; }
-    }
   </style>
 </head>
 <body>
@@ -267,133 +314,81 @@
   </a>
   <nav>
     <a href="/">Calculator</a>
-    <a href="/blog/">Blog & Opinie</a>
+    <a href="/blog/" class="nav-actief">Blog & Opinie</a>
   </nav>
 </header>
 
-<div class="artikel-wrap">
+<div class="hero">
+  <div class="hero-label">Blog & Opinie</div>
+  <h1>De overheid en jouw geld</h1>
+  <p>Opiniestukken, analyses en discussies over belastingdruk, overheidsuitgaven en de vrijheid van de Nederlandse belastingbetaler.</p>
+</div>
 
-  <div class="breadcrumb">
-    <a href="/">Roofdag.nl</a>
-    <span>›</span>
-    <a href="/blog/">Blog & Opinie</a>
-    <span>›</span>
-    <span>Belastingdruk</span>
-  </div>
+<div class="hoofd">
 
-  <div class="artikel-meta-top">Opinie · Belastingdruk · April 2026</div>
-
-  <h1>Belastingdruk: democratische bijdrage of georganiseerde diefstal?</h1>
-
-  <div class="byline">
-    <span class="auteur">Roofdag Redactie</span>
-    <span>·</span>
-    <span>April 2026</span>
-    <span class="tag">Opinie</span>
-    <span class="tag">Belastingdruk</span>
-  </div>
-
-  <div class="inleiding">
-    De overheid neemt voor de gemiddelde Nederlander meer dan de helft van zijn economische productie af. Wanneer houdt een heffing op een vrijwillige bijdrage te zijn en wordt het roof? Een scherpe blik op de grenzen van fiscale legitimiteit.
-  </div>
-
-  <div class="artikel-tekst">
-
-    <p>
-      [PLACEHOLDER — vervang deze tekst door je eigen opiniestuk]
-    </p>
-
-    <p>
-      Stel dat je een buurman hebt die elke maand langs je deur komt en 52 procent van je salaris opeist. Hij legt uit waarvoor hij het gebruikt: infrastructuur, zorg, defensie. Sommige dingen vind je nuttig. Andere veel minder. Maar weigeren is geen optie. De vraag die Roofdag.nl centraal stelt, is simpel maar politiek geladen: <strong>tot welk percentage is een belasting een "bijdrage", en vanaf welk punt wordt het roof?</strong>
-    </p>
-
-    <div class="feitenkader">
-      <h3>📊 De cijfers voor 2025</h3>
-      <ul>
-        <li><span>Roofdag gemiddelde Nederlander</span> <strong>~13 augustus</strong></li>
-        <li><span>Belastingdruk als % van BBP (NL)</span> <strong>~43%</strong></li>
-        <li><span>Max. marginaal tarief inkomstenbelasting</span> <strong>49,5%</strong></li>
-        <li><span>ZZP: effectieve druk incl. ZVW, Box 3</span> <strong>tot ~60%</strong></li>
-        <li><span>Gemiddeld aantal "belasting-werkdagen" per jaar</span> <strong>~214 dagen</strong></li>
-      </ul>
+  <!-- UITGELICHT ARTIKEL -->
+  <a class="featured" href="/blog/belastingdruk-diefstal-of-democratie.html">
+    <div class="featured-tekst">
+      <div class="featured-label">⭐ Uitgelicht · Opinie</div>
+      <div class="featured-titel">Belastingdruk: democratische bijdrage of georganiseerde diefstal?</div>
+      <div class="featured-intro">De overheid neemt voor de gemiddelde Nederlander meer dan de helft van zijn economische productie af. Wanneer houdt een heffing op een bijdrage te zijn en wordt het roof? Een scherpe analyse van de grenzen van fiscale legitimiteit.</div>
+      <div class="featured-meta">
+        <span>Roofdag Redactie</span>
+        <span>·</span>
+        <span>April 2026</span>
+        <span class="tag">Opinie</span>
+        <span class="tag">Belastingdruk</span>
+      </div>
     </div>
-
-    <h2>Het democratische argument</h2>
-
-    <p>
-      Voorstanders van hoge belastingen wijzen op legitimiteit via democratische besluitvorming. De Kamer stemt in met begrotingen; burgers kiezen hun vertegenwoordigers. In die redenering is belasting geen diefstal maar een collectief contract: je draagt bij aan voorzieningen die je zelf niet individueel kunt organiseren — van dijken tot rechtbanken.
-    </p>
-
-    <p>
-      Het is een stevig argument. Maar het heeft een zwakke plek: <strong>wat als je geen kant op kunt?</strong> Een contract is alleen vrijwillig als je de keuze hebt het niet te tekenen. Belasting is dat niet. Je kunt het land verlaten, maar je kunt je eigen samenleving niet mee-oprichten. De facto is belastingplicht voor de meeste mensen niet een keuze maar een feit.
-    </p>
-
-    <div class="pullquote">
-      <p>Wanneer overschrijdt een heffing de grens van het moreel aanvaardbare? Op het moment dat de belastingbetaler niet langer begrijpt waarvoor hij betaalt — en geen reële keuze heeft om te weigeren.</p>
+    <div class="featured-visual">
+      <div class="getal">52%</div>
+      <div class="getal-sub">van je inkomen<br>verdwijnt naar Den Haag</div>
     </div>
+  </a>
 
-    <h2>Het libertarische tegengeluid</h2>
-
-    <p>
-      Vanuit libertarisch perspectief is belasting per definitie dwang. De econoom Murray Rothbard omschreef de staat als "een organisatie die systematisch het recht opeist op belastingheffing, terwijl ze het individu geen reële keuze laat." Of je dat extreem vindt of niet: de onderliggende vraag is legitiem — <strong>hoeveel mag de overheid opeisen zonder dat het de eigendomsrechten van burgers schendt?</strong>
-    </p>
-
-    <p>
-      In Nederland bereikt een ZZP'er met een modaal inkomen al snel een effectieve druk van boven de 50%. Dat betekent: meer dan de helft van de door hem gecreëerde waarde wordt wegbelast. Niet voor diensten die hij direct ervaart, maar voor een begroting waar hij geen directe controle over heeft.
-    </p>
-
-    <h2>De grijze zone: waar ligt de grens?</h2>
-
-    <p>
-      Noch "belasting is altijd goed" noch "belasting is altijd diefstal" is een bevredigend antwoord. Interessanter is de vraag: <strong>bij welke drempel kantelt het?</strong> Historisch gezien gebruikte de feodale heer ook een percentage als norm — doorgaans een tiende (10%). Moderne westerse staten zitten gemiddeld op het vier- tot vijfvoudige daarvan.
-    </p>
-
-    <p>
-      Filosoof Robert Nozick stelde in <em>Anarchy, State, and Utopia</em> (1974) dat een minimale staat — die zich beperkt tot bescherming van eigendom en contracten — de enige moreel te rechtvaardigen staat is. Alles daarboven, inclusief herverdeling, schendt de rechten van degenen die worden aangeslagen. Dat is een minderheidspositie, maar een intellectueel serieuze.
-    </p>
-
-    <div class="discussie-kader">
-      <h3>💬 Stelling voor discussie</h3>
-      <p>
-        <strong>"Een belasting van meer dan 50% op het inkomen van een individu is moreel niet te rechtvaardigen, ongeacht de democratische grondslag."</strong><br><br>
-        Eens? Oneens? Deels eens? Stuur je reactie naar [email invullen] of reageer via social media met #roofdag.
-      </p>
+  <!-- THEMA'S -->
+  <div class="thema-blok">
+    <h3>📂 Thema's</h3>
+    <div class="thema-tags">
+      <a href="#" class="thema-tag">Belastingdruk</a>
+      <a href="#" class="thema-tag">Overheidsuitgaven</a>
+      <a href="#" class="thema-tag">ZZP & ondernemer</a>
+      <a href="#" class="thema-tag">Vermogen & Box 3</a>
+      <a href="#" class="thema-tag">Inkomenspolitiek</a>
+      <a href="#" class="thema-tag">Vergelijking buitenland</a>
+      <a href="#" class="thema-tag">Fiscale legitimiteit</a>
     </div>
-
-    <h2>Wat Roofdag.nl laat zien</h2>
-
-    <p>
-      De calculator op deze site is geen politieke stellingname — het is een transparantie-instrument. Door je eigen situatie in te voeren, zie je precies op welke dag van het jaar jij klaar bent met werken voor de overheid en begint te werken voor jezelf. Die dag heet je Roofdag.
-    </p>
-
-    <p>
-      Of je die dag vroeg of laat vindt vallen, is mede afhankelijk van je inkomensbron, woonsituatie, vermogen en aftrekposten. Maar het principe blijft: <strong>transparantie over wat de fiscaliteit van je economische vrijheid afpakt, is de eerste stap in elk zinvol maatschappelijk debat.</strong>
-    </p>
-
-    <div class="cta-kader">
-      <h3>🗓️ Bereken jouw eigen Roofdag</h3>
-      <p>Vul jouw situatie in en ontdek hoe laat in het jaar jij pas echt voor jezelf werkt.</p>
-      <a class="cta-knop" href="/">Naar de calculator →</a>
-    </div>
-
-    <h2>Conclusie</h2>
-
-    <p>
-      De discussie over belasting als bijdrage of als roof is geen zwart-witdebat. Ze raakt aan fundamentele vragen over eigendom, legitimiteit en de grens van staatsmacht. Wat we hier wél kunnen stellen: <strong>een overheid die meer dan de helft van de economische productie van haar burgers claimt, heeft een stevige verantwoording te leveren</strong> — en die verantwoording is in Nederland structureel onderbelicht.
-    </p>
-
-    <p>
-      Roofdag.nl wil die discussie voeden. Met data, met berekeningen, en met opiniestukken als dit. Want pas als je weet wat je betaalt, kun je een oordeel vormen over of het de moeite waard is.
-    </p>
-
   </div>
 
-  <div class="artikel-disclaimer">
-    ⚠️ Dit artikel is een opiniestuk en bevat geen fiscaal of juridisch advies. De genoemde percentages en cijfers zijn indicatief en gebaseerd op de belastingtarieven 2025. Raadpleeg de <a href="https://www.belastingdienst.nl" target="_blank" rel="noopener">Belastingdienst</a> of een fiscalist voor persoonlijk advies.
+  <!-- DISCLAIMER -->
+  <div class="disclaimer">
+    ⚠️ <strong>Let op:</strong> de artikelen op deze pagina zijn opiniestukken en discussiebijdragen — geen fiscaal of juridisch advies. De auteurs geven hun persoonlijke analyse; raadpleeg altijd een adviseur voor jouw specifieke situatie.
   </div>
 
-  <br><br>
-  <a class="terug" href="/blog/">← Terug naar alle artikelen</a>
+  <!-- ALLE ARTIKELEN -->
+  <div class="sectie-header">
+    <h2>Alle artikelen</h2>
+    <span>1 artikel</span>
+  </div>
+
+  <div class="artikelen-grid">
+
+    <a class="artikel-kaart" href="/blog/belastingdruk-diefstal-of-democratie.html">
+      <div class="kaart-kleur kleur-rood"></div>
+      <div class="kaart-body">
+        <div class="kaart-categorie">Opinie · Belastingdruk</div>
+        <div class="kaart-titel">Belastingdruk: democratische bijdrage of georganiseerde diefstal?</div>
+        <div class="kaart-intro">Wanneer overschrijdt een belasting de grens van het moreel acceptabele? Een filosofisch en economisch perspectief op de Nederlandse fiscaliteit.</div>
+        <div class="kaart-footer">
+          <span>April 2026 · Roofdag Redactie</span>
+          <span class="lees-meer">Lees →</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- MEER ARTIKELEN VOLGEN HIER -->
+
+  </div>
 
 </div>
 
