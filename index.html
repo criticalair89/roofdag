@@ -589,6 +589,17 @@
       </div>
     </div>
 
+    <!-- VERZEKERINGEN -->
+    <div class="card">
+      <div class="card-titel"><span class="ic">🛡️</span><h2>Verzekeringen</h2></div>
+
+      <div class="veld">
+        <label>Totale schadeverzekeringspremies per jaar <span class="hint">— incl. 21% verzekeringsbelasting</span></label>
+        <input type="number" id="in-verzekpremie" value="1500" min="0" step="50" oninput="herbereken()">
+        <div class="hint" style="margin-top:6px;">Auto, woning, inboedel, aansprakelijkheid e.d. Van elke euro premie gaat 17,4% naar de overheid.</div>
+      </div>
+    </div>
+
     <!-- UITGAVEN EN BTW -->
     <div class="card">
       <div class="card-titel"><span class="ic">🛒</span><h2>Uitgaven &amp; BTW</h2></div>
@@ -832,7 +843,7 @@ const S = {
   aankoopNotaris: 1200, aankoopTaxatie: 600, aankoopAdvies: 3000, aankoopFinOverig: 0,
   kwh: 3000, m3: 1400,
   energieWoning: 'rijtjeswoning', energieLabel: 'C',
-  autoType: 'geen', km: 15000, verbruik: 7, vluchten: 2,
+  autoType: 'geen', km: 15000, verbruik: 7, vluchten: 2, verzekPremie: 1500,
   eetbaar: 350, nietEetbaar: 80, kleding: 75, horeca: 100, diversen: 75, abonnementen: 100,
   roken: 'nee', alcohol: 'geen',
   afval: 320, riool: 220, waterschap: 130, parkeer: 0,
@@ -905,6 +916,7 @@ function leesDom() {
   S.km             = gv('sl-km')  || 15000;
   S.verbruik       = gv('in-verbruik') || 7;
   S.vluchten       = gv('sl-vluchten');
+  S.verzekPremie   = gv('in-verzekpremie');
   S.eetbaar        = gv('in-eetbaar');
   S.nietEetbaar    = gv('in-niet-eetbaar');
   S.kleding        = gv('in-kleding');
@@ -1057,6 +1069,7 @@ function calcMRB() {
 
 // ── Vliegbelasting ──
 function calcVlieg() { return S.vluchten * 29.05; }
+function calcVerzekBelasting() { return S.verzekPremie * (21 / 121); }
 
 // ── OZB ──
 function calcOZB() {
@@ -1210,6 +1223,7 @@ function herbereken() {
     { naam: 'ZVW bijdrage (ZZP)',                  bedrag: calcZVW(),      tag: '' },
     { naam: 'Motorrijtuigenbelasting',             bedrag: calcMRB(),      tag: '' },
     { naam: 'Vliegbelasting',                      bedrag: calcVlieg(),    tag: '' },
+    { naam: 'Verzekeringsbelasting',               bedrag: calcVerzekBelasting(), tag: '' },
     { naam: 'OZB (onroerendezaakbelasting)',        bedrag: calcOZB(),          tag: '' },
     { naam: 'Gemeentelijke heffingen',             bedrag: calcGemeente(),     tag: '' },
     { naam: 'Overdrachtsbelasting',                bedrag: calcOverdrachts(),  tag: '' },
