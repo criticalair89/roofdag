@@ -301,7 +301,7 @@
 
       <div class="col2">
         <div class="veld">
-          <label>Spaargeld <span class="hint">— fictief rendement 1,03%</span></label>
+          <label>Spaargeld <span class="hint">— fictief rendement 1,37%</span></label>
           <input type="number" id="in-spaar" value="25000" min="0" oninput="herbereken()">
         </div>
         <div class="veld">
@@ -311,7 +311,7 @@
       </div>
 
       <div class="veld">
-        <label>Overig vastgoed Box 3 <span class="hint">— WOZ-waarde, fictief rendement 6,17%</span></label>
+        <label>Overig vastgoed Box 3 <span class="hint">— WOZ-waarde, fictief rendement 5,88%</span></label>
         <input type="number" id="in-vastgoed3" value="0" min="0" oninput="herbereken()">
       </div>
 
@@ -1027,7 +1027,7 @@ function calcBox3() {
   const belastbaar = Math.max(0, totaal - vrij);
   if (!belastbaar) return 0;
   // Fictief rendement gewogen naar aandeel in vermogen
-  const r = (S.spaar/totaal)*0.0103 + (S.beleggingen/totaal)*0.0588 + (S.vastgoedBox3/totaal)*0.0617;
+  const r = (S.spaar/totaal)*0.0137 + (S.beleggingen/totaal)*0.0588 + (S.vastgoedBox3/totaal)*0.0588;
   return belastbaar * r * 0.36;
 }
 
