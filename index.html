@@ -248,7 +248,7 @@
   </div>
   <div class="header-rechts">
     <a class="header-blog-link" href="/blog/">📝 Blog & Opinie</a>
-    <div class="header-badge">🇳🇱 Tarieven 2025</div>
+    <div class="header-badge">🇳🇱 Tarieven 2026</div>
   </div>
 </header>
 
@@ -299,7 +299,7 @@
         Geldt als je ≥5% aandelen hebt in een BV of NV. Belast over dividend én verkoopwinst op aandelen.
       </p>
       <div class="veld">
-        <label>Box 2 inkomen dit jaar <span class="hint">— 24,5% t/m €67.804 · 31% daarboven</span></label>
+        <label>Box 2 inkomen dit jaar <span class="hint">— 24,5% t/m €68.843 · 31% daarboven</span></label>
         <input type="number" id="in-box2" value="0" min="0" oninput="herbereken()">
       </div>
     </div>
@@ -308,27 +308,27 @@
     <div class="card">
       <div class="card-titel"><span class="ic">📈</span><h2>Vermogen (Box 3)</h2></div>
       <p style="font-size:13px;color:var(--grijs-mid);margin-bottom:16px;">
-        Elk categorie heeft een eigen fictief rendement (2025). Over dat rendement betaal je 36% belasting.
+        Elk categorie heeft een eigen fictief rendement (2026). Over dat rendement betaal je 36% belasting.
       </p>
 
       <div class="col2">
         <div class="veld">
-          <label>Spaargeld <span class="hint">— fictief rendement 1,37%</span></label>
+          <label>Spaargeld <span class="hint">— fictief rendement 1,28%</span></label>
           <input type="number" id="in-spaar" value="25000" min="0" oninput="herbereken()">
         </div>
         <div class="veld">
-          <label>Beleggingen <span class="hint">— fictief rendement 5,88%</span></label>
+          <label>Beleggingen <span class="hint">— fictief rendement 6,00%</span></label>
           <input type="number" id="in-beleg" value="0" min="0" oninput="herbereken()">
         </div>
       </div>
 
       <div class="veld">
-        <label>Overig vastgoed Box 3 <span class="hint">— WOZ-waarde, fictief rendement 5,88%</span></label>
+        <label>Overig vastgoed Box 3 <span class="hint">— WOZ-waarde, fictief rendement 6,00%</span></label>
         <input type="number" id="in-vastgoed3" value="0" min="0" oninput="herbereken()">
       </div>
 
       <div style="font-size:12px;color:var(--grijs-mid);margin-top:8px;padding:8px 10px;background:var(--blauw-zacht);border-radius:3px;">
-        💡 Vrijstelling 2025: € 57.000 (alleenstaand). Over het meerdere betaal je heffing op basis van fictief rendement.
+        💡 Vrijstelling 2026: € 59.357 (alleenstaand). Over het meerdere betaal je heffing op basis van fictief rendement.
       </div>
 
       <div class="sectie-kopje">Werkelijk rendement (voor Roofdag-berekening)</div>
@@ -368,7 +368,7 @@
       <div id="blok-koop" class="condblok">
         <div class="col2">
           <div class="veld">
-            <label>WOZ-waarde <span class="hint">— boven €1.310.000: villatax 2,35%</span></label>
+            <label>WOZ-waarde <span class="hint">— boven €1.350.000: villatax 2,35%</span></label>
             <input type="number" id="in-woz" value="400000" min="0" oninput="herbereken()">
           </div>
           <div class="veld">
@@ -385,7 +385,7 @@
       <div class="sectie-kopje">Vastgoedaankoop dit jaar</div>
 
       <div class="veld">
-        <label>Koopt u vastgoed in 2025?</label>
+        <label>Koopt u vastgoed in 2026?</label>
         <div class="toggles">
           <button class="btn-toggle aan" data-g="aankoop" data-v="nee"
                   onclick="tog(this); toon('blok-aankoop',false)">Nee</button>
@@ -400,11 +400,11 @@
           <label>Type aankoop</label>
           <div class="toggles">
             <button class="btn-toggle" data-g="aankoop-type" data-v="starter"
-                    onclick="tog(this); g('blok-fin-aankoop').style.display='block'">Starter eigen woning <span class="hint">(0% als ≤ €510k)</span></button>
+                    onclick="tog(this); g('blok-fin-aankoop').style.display='block'">Starter eigen woning <span class="hint">(0% als ≤ €555k)</span></button>
             <button class="btn-toggle aan" data-g="aankoop-type" data-v="eigen"
                     onclick="tog(this); g('blok-fin-aankoop').style.display='block'">Eigen woning <span class="hint">(2%)</span></button>
             <button class="btn-toggle" data-g="aankoop-type" data-v="belegging"
-                    onclick="tog(this); g('blok-fin-aankoop').style.display='none'">Belegging / 2e woning <span class="hint">(10,4%)</span></button>
+                    onclick="tog(this); g('blok-fin-aankoop').style.display='none'">Belegging / 2e woning <span class="hint">(8%)</span></button>
           </div>
         </div>
 
@@ -453,7 +453,7 @@
           </div>
 
           <div class="veld">
-            <label>NHG (Nationale Hypotheek Garantie) <span class="hint">— 0,6% van hypotheek, aftrekbaar als eigen woning ≤ €435k</span></label>
+            <label>NHG (Nationale Hypotheek Garantie) <span class="hint">— 0,4% van hypotheek, aftrekbaar als eigen woning ≤ €470k</span></label>
             <div class="toggles">
               <button class="btn-toggle aan" data-g="nhg" data-v="nee" onclick="tog(this); herbereken()">Nee</button>
               <button class="btn-toggle" data-g="nhg" data-v="ja"  onclick="tog(this); herbereken()">Ja</button>
@@ -554,7 +554,7 @@
       </div>
 
       <div style="font-size:12px;color:var(--grijs-mid);padding:8px 10px;background:var(--blauw-zacht);border-radius:3px;">
-        💡 Energiebelasting 2025: € 0,1228/kWh · € 0,4916/m³ gas (excl. btw)
+        💡 Energiebelasting 2026: € 0,0916/kWh · € 0,6007/m³ gas (excl. btw)
       </div>
     </div>
 
@@ -592,7 +592,7 @@
       </div>
 
       <div class="veld mt-12">
-        <label>Vluchten vanuit Nederland per jaar <span class="hint">— € 29,05 per vertrek</span></label>
+        <label>Vluchten vanuit Nederland per jaar <span class="hint">— € 30,25 per vertrek</span></label>
         <div class="slider-rij">
           <input type="range" id="sl-vluchten" min="0" max="20" step="1" value="2"
                  oninput="slUpdate('vluchten',+this.value)">
@@ -732,15 +732,15 @@
       <div class="sectie-kopje">Kinderen</div>
       <div class="col2">
         <div class="veld">
-          <label>Kinderen 0–5 jaar <span class="hint">— € 280/kwartaal/kind</span></label>
+          <label>Kinderen 0–5 jaar <span class="hint">— € 297/kwartaal/kind</span></label>
           <input type="number" id="in-kind05" value="0" min="0" max="10" oninput="herbereken()">
         </div>
         <div class="veld">
-          <label>Kinderen 6–11 jaar <span class="hint">— € 340/kwartaal/kind</span></label>
+          <label>Kinderen 6–11 jaar <span class="hint">— € 360/kwartaal/kind</span></label>
           <input type="number" id="in-kind611" value="0" min="0" max="10" oninput="herbereken()">
         </div>
         <div class="veld">
-          <label>Kinderen 12–17 jaar <span class="hint">— € 400/kwartaal/kind</span></label>
+          <label>Kinderen 12–17 jaar <span class="hint">— € 424/kwartaal/kind</span></label>
           <input type="number" id="in-kind1217" value="0" min="0" max="10" oninput="herbereken()">
         </div>
       </div>
@@ -829,7 +829,7 @@
     </div>
 
     <div class="disclaimer">
-      ⚠️ Alle berekeningen zijn indicatief op basis van Nederlandse tarieven 2025. Exacte bedragen hangen af van jouw persoonlijke situatie. Dit is geen fiscaal advies — raadpleeg de <a href="https://belastingdienst.nl" target="_blank" style="color:var(--blauw);">Belastingdienst</a> voor exacte informatie.
+      ⚠️ Alle berekeningen zijn indicatief op basis van Nederlandse tarieven 2026. Exacte bedragen hangen af van jouw persoonlijke situatie. Dit is geen fiscaal advies — raadpleeg de <a href="https://belastingdienst.nl" target="_blank" style="color:var(--blauw);">Belastingdienst</a> voor exacte informatie.
     </div>
 
   </div><!-- /resultaten -->
@@ -837,7 +837,7 @@
 
 <footer>
   <div class="f-logo">Roofdag.nl</div>
-  <div>Onafhankelijke belastingcalculator voor Nederland · Op basis van tarieven 2025</div>
+  <div>Onafhankelijke belastingcalculator voor Nederland · Op basis van tarieven 2026</div>
   <div>Indicatief · Geen juridisch of fiscaal advies · <a href="https://belastingdienst.nl" target="_blank">belastingdienst.nl</a></div>
 </footer>
 
@@ -981,7 +981,7 @@ function calcAankoopAftrek() {
   const rente = S.aankoopHypBedrag * (S.aankoopRente / 100) * (maandenRest / 12);
 
   // Financieringskosten
-  const nhg = S.aankoopNHG ? S.aankoopHypBedrag * 0.006 : 0;
+  const nhg = S.aankoopNHG ? S.aankoopHypBedrag * 0.004 : 0; // NHG borgtochtprovisie 0,4%
   const fin = nhg + S.aankoopNotaris + S.aankoopTaxatie + S.aankoopAdvies + S.aankoopFinOverig;
 
   return { totaal: rente + fin, rente, fin, nhg, maandenRest };
@@ -995,8 +995,8 @@ function calcBox1() {
   if (S.inkomstenType === 'zzp') bi *= (1 - 0.127); // MKB-winstvrijstelling
 
   if (S.woningType === 'koop') {
-    // Eigenwoningforfait 2025: 0,35% t/m €1.310.000, daarboven 2,35% (villatax)
-    const EWF_GRENS = 1310000, EWF_LAAG = 0.0035, EWF_HOOG = 0.0235;
+    // Eigenwoningforfait 2026: 0,35% t/m €1.350.000, daarboven 2,35% (villatax)
+    const EWF_GRENS = 1350000, EWF_LAAG = 0.0035, EWF_HOOG = 0.0235;
     let ewf = S.woz <= EWF_GRENS
       ? S.woz * EWF_LAAG
       : EWF_GRENS * EWF_LAAG + (S.woz - EWF_GRENS) * EWF_HOOG;
@@ -1007,21 +1007,25 @@ function calcBox1() {
   const aftrek = calcAankoopAftrek();
   bi = Math.max(0, bi - aftrek.totaal);
 
-  const GRENS1 = 75518, T1 = 0.3697, T2 = 0.4950;
-  let bel = bi <= GRENS1 ? bi*T1 : GRENS1*T1 + (bi-GRENS1)*T2;
+  // Box 1 tarieven 2026 (onder AOW-leeftijd): 35,75% t/m €38.883 · 37,56% t/m €78.426 · 49,50% daarboven
+  const G1 = 38883, G2 = 78426, T1 = 0.3575, T2 = 0.3756, T3 = 0.4950;
+  let bel = bi <= G1 ? bi*T1
+          : bi <= G2 ? G1*T1 + (bi-G1)*T2
+          : G1*T1 + (G2-G1)*T2 + (bi-G2)*T3;
 
-  // Algemene heffingskorting
-  let ahk = bi <= 24812 ? 3362 : bi <= 75518 ? 3362*(1-(bi-24812)/(75518-24812)) : 0;
+  // Algemene heffingskorting 2026: max €3.115, afbouw 6,398% boven €29.736, nihil vanaf €78.426
+  let ahk = bi <= 29736 ? 3115 : bi < 78426 ? 3115 - (bi-29736)*0.06398 : 0;
+  ahk = Math.max(0, ahk);
 
-  // Arbeidskorting
+  // Arbeidskorting 2026: max €5.685
   let ak = 0;
   if (S.inkomstenType==='werk'||S.inkomstenType==='zzp') {
     const I = bruto;
-    if      (I<=10741)  ak = I*0.08425;
-    else if (I<=23201)  ak = 905  + (I-10741)*0.29861;
-    else if (I<=37691)  ak = 4631 + (I-23201)*0.03085;
-    else if (I<=124931) ak = 5079 - (I-37691)*0.0651;
-    ak = Math.max(0, Math.min(ak, 5158));
+    if      (I<=11965)  ak = I*0.08324;
+    else if (I<=25845)  ak = 996  + (I-11965)*0.31009;
+    else if (I<=45592)  ak = 5300 + (I-25845)*0.01950;
+    else if (I<=132920) ak = 5685 - (I-45592)*0.0651;
+    ak = Math.max(0, Math.min(ak, 5685));
   }
 
   return Math.max(0, bel - ahk - ak);
@@ -1030,18 +1034,18 @@ function calcBox1() {
 // ── ZVW bijdrage (ZZP betaalt zelf) ──
 function calcZVW() {
   if (S.inkomstenType !== 'zzp') return 0;
-  return Math.min(S.inkomen, 71624) * 0.0543; // 5,43% ZVW bijdrage ZZP 2025
+  return Math.min(S.inkomen, 79409) * 0.0485; // 4,85% ZVW bijdrage ZZP 2026, max €79.409
 }
 
 // ── Box 3: Vermogensrendementsheffing (per categorie) ──
 function calcBox3() {
   const totaal = S.spaar + S.beleggingen + S.vastgoedBox3;
   if (totaal <= 0) return 0;
-  const vrij = 57000;
+  const vrij = 59357; // heffingsvrij vermogen 2026
   const belastbaar = Math.max(0, totaal - vrij);
   if (!belastbaar) return 0;
   // Fictief rendement gewogen naar aandeel in vermogen
-  const r = (S.spaar/totaal)*0.0137 + (S.beleggingen/totaal)*0.0588 + (S.vastgoedBox3/totaal)*0.0588;
+  const r = (S.spaar/totaal)*0.0128 + (S.beleggingen/totaal)*0.06 + (S.vastgoedBox3/totaal)*0.06; // 2026
   return belastbaar * r * 0.36;
 }
 
@@ -1053,8 +1057,8 @@ function calcDividend() {
 // ── Box 2: Aanmerkelijk belang (≥5% in BV/NV) ──
 function calcBox2() {
   if (!S.box2Inkomen) return 0;
-  const schijf1 = Math.min(S.box2Inkomen, 67804);
-  const schijf2 = Math.max(0, S.box2Inkomen - 67804);
+  const schijf1 = Math.min(S.box2Inkomen, 68843); // 2026
+  const schijf2 = Math.max(0, S.box2Inkomen - 68843);
   return schijf1 * 0.245 + schijf2 * 0.31;
 }
 
@@ -1072,8 +1076,8 @@ function calcBTW() {
 // ── Accijnzen ──
 function calcAccijns() {
   let tot = 0;
-  if (S.autoType==='benzine') tot += S.km*S.verbruik/100 * 0.814;
-  if (S.autoType==='diesel')  tot += S.km*S.verbruik/100 * 0.516;
+  if (S.autoType==='benzine') tot += S.km*S.verbruik/100 * 0.8447; // accijns 2026
+  if (S.autoType==='diesel')  tot += S.km*S.verbruik/100 * 0.5523; // accijns 2026
   if (S.roken==='licht') tot += (7/20)*365*4.90;
   if (S.roken==='pakje') tot += (20/20)*365*4.90;
   if (S.roken==='zwaar') tot += (30/20)*365*4.90;
@@ -1090,7 +1094,7 @@ function calcMRB() {
 }
 
 // ── Vliegbelasting ──
-function calcVlieg() { return S.vluchten * 29.05; }
+function calcVlieg() { return S.vluchten * 30.25; } // vliegbelasting 2026
 function calcVerzekBelasting() { return S.verzekPremie * (21 / 121); }
 
 // ── OZB ──
@@ -1100,45 +1104,47 @@ function calcOZB() {
 
 // ── Energiebelasting ──
 function calcEnergie() {
-  const eb_elek = Math.min(S.kwh, 10000)*0.1228 + Math.max(0, S.kwh-10000)*0.0456;
-  const eb_gas  = S.m3 * 0.4916;
+  // Energiebelasting 2026 (excl. btw)
+  const eb_elek = Math.min(S.kwh, 10000)*0.09161 + Math.max(0, S.kwh-10000)*0.06671;
+  const eb_gas  = S.m3 * 0.60066;
   return eb_elek + eb_gas;
 }
 
 // ── Overdrachtsbelasting ──
 function calcOverdrachts() {
   if (!S.aankoopJa) return 0;
-  if (S.aankoopType==='starter' && S.aankoopPrijs<=510000) return 0;
+  if (S.aankoopType==='starter' && S.aankoopPrijs<=555000) return 0; // startersgrens 2026
   if (S.aankoopType==='eigen')    return S.aankoopPrijs * 0.02;
-  if (S.aankoopType==='belegging') return S.aankoopPrijs * 0.104;
+  if (S.aankoopType==='belegging') return S.aankoopPrijs * 0.08; // overige woningen 2026: 8%
   return S.aankoopPrijs * 0.02;
 }
 
 // ══════ TOESLAGEN ══════
 
-// ── Zorgtoeslag 2025 ──
+// ── Zorgtoeslag 2026 (max €129/mnd alleen, €246/mnd partner; grens €40.857 / €51.142) ──
 function calcZorgtoeslag() {
   const ik = S.inkomen;
+  const DREMPEL = 29736;
   if (S.zorgPartner === 'partner') {
-    const max = 2928;
-    if (ik <= 34000) return max;
-    if (ik >= 49000) return 0;
-    return max * (1 - (ik - 34000) / (49000 - 34000));
+    const max = 2952, grens = 51142;
+    if (ik <= DREMPEL) return max;
+    if (ik >= grens) return 0;
+    return max * (1 - (ik - DREMPEL) / (grens - DREMPEL));
   } else {
-    const max = 1536;
-    if (ik <= 26480) return max;
-    if (ik >= 38520) return 0;
-    return max * (1 - (ik - 26480) / (38520 - 26480));
+    const max = 1548, grens = 40857;
+    if (ik <= DREMPEL) return max;
+    if (ik >= grens) return 0;
+    return max * (1 - (ik - DREMPEL) / (grens - DREMPEL));
   }
 }
 
-// ── Huurtoeslag 2025 ──
+// ── Huurtoeslag (vereenvoudigd, grenzen nog niet geactualiseerd naar 2026) ──
 function calcHuurtoeslag() {
   if (S.woningType !== 'huur') return 0;
   const huur = S.huurMaand;
   if (huur < 454 || huur > 880) return 0;
   const ik = S.inkomen;
-  if (ik > 33000) return 0; // inkomengrens alleenstaand 2025 (indicatief)
+  if (ik > 33000) return 0; // inkomengrens alleenstaand (indicatief)
   // Eigen bijdrage neemt toe met inkomen (~€230 bij laag, ~€580 bij grens)
   const eigenBijdrage = 230 + Math.max(0, (ik - 15000) / (33000 - 15000)) * 350;
   const toeslag = Math.max(0, (huur - eigenBijdrage) * 12);
@@ -1147,14 +1153,14 @@ function calcHuurtoeslag() {
   return toeslag * taper;
 }
 
-// ── Kinderbijslag 2025 (flat, geen inkomenstoets) ──
+// ── Kinderbijslag 2026 (flat, geen inkomenstoets; gemiddelde kwartaalbedragen Q1–Q4 2026) ──
 function calcKinderbijslag() {
-  return S.kind05   * 4 * 280
-       + S.kind611  * 4 * 340
-       + S.kind1217 * 4 * 400;
+  return S.kind05   * 4 * 296.74
+       + S.kind611  * 4 * 360.33
+       + S.kind1217 * 4 * 423.91;
 }
 
-// ── Kindgebonden budget 2025 (inkomenafhankelijk) ──
+// ── Kindgebonden budget (inkomenafhankelijk, vereenvoudigd, nog niet geactualiseerd naar 2026) ──
 function calcKindgebondenBudget() {
   const totKinderen = S.kind05 + S.kind611 + S.kind1217;
   if (totKinderen === 0) return 0;
@@ -1166,12 +1172,12 @@ function calcKindgebondenBudget() {
   return max * (1 - (ik - 25000) / (45000 - 25000));
 }
 
-// ── Kinderopvangtoeslag 2025 ──
+// ── Kinderopvangtoeslag (vereenvoudigd) ──
 function calcOpvangtoeslag() {
   if (S.opvang !== 'ja') return 0;
   const kosten = S.opvangKosten * 12;
   const ik = S.inkomen;
-  // Vergoedingspercentage (2025 tabel, vereenvoudigd)
+  // Vergoedingspercentage (vereenvoudigde tabel, nog niet geactualiseerd naar 2026)
   let pct;
   if      (ik <=  20350) pct = 0.960;
   else if (ik <=  30000) pct = 0.960 - (ik -  20350) / ( 30000 -  20350) * 0.140;
@@ -1228,7 +1234,7 @@ function calcGemeente() {
 const KLEUREN = ['#01689b','#154273','#27ae60','#f0a500','#d52b1e','#8e44ad','#16a085','#e67e22','#2c3e50','#c0392b','#7f8c8d'];
 
 function datumVanDag(dagNr) {
-  const d = new Date(2025, 0, Math.round(Math.max(1, Math.min(dagNr, 365))));
+  const d = new Date(2026, 0, Math.round(Math.max(1, Math.min(dagNr, 365))));
   return d.toLocaleDateString('nl-NL', { day: 'numeric', month: 'long' });
 }
 
